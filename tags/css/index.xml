@@ -19,7 +19,8 @@
 最近ブルースギターを練習する機会が多く、セッションの時にこういうのがあったら便利だなと思って作ってみました。
 1.2. ソースコード https://github.com/mtside01/BluesCode 　2. ポイント（備忘録） 2.1. 複数のHTML要素に同一の名前を与えて一括変更する デモサイトを見て頂ければなんとなくわかると思いますが、 ブルース進行は基本的に3つのコードのみで構成されます。 （トニック、サブドミナント、ドミナントとか言いますが音楽サイトではないので詳細は割愛します。）
 それらを表示している要素を、プルダウンメニューに応じて同時に操作したかったため、 今回は以下の手順で実現しています。
-2.1.1. 複数のHTML要素に同一の名前を与える 以下あたりがわかりやすいでしょうか？ name=&amp;quot;subDominant&amp;quot;およびname=&amp;quot;root&amp;quot;を与えている要素が複数あることが見て取れると思います。
+2.1.1. 複数のHTML要素に同一の名前を与える 以下あたりがわかりやすいでしょうか？
+name=&amp;quot;subDominant&amp;quot;およびname=&amp;quot;root&amp;quot;を与えている要素が複数あることが見て取れると思います。
 &amp;lt;form class=&amp;#34;row g-3&amp;#34;&amp;gt;  &amp;lt;div class=&amp;#34;col-md-1&amp;#34;&amp;gt;  &amp;lt;h3 name=&amp;#34;subDominant&amp;#34;&amp;gt;D7&amp;lt;/h3&amp;gt;  &amp;lt;/div&amp;gt;  &amp;lt;div class=&amp;#34;col-md-2&amp;#34;&amp;gt;  &amp;lt;h3 style=&amp;#34;text-align: right&amp;#34;&amp;gt;|&amp;lt;/h3&amp;gt;  &amp;lt;/div&amp;gt;  &amp;lt;div class=&amp;#34;col-md-2&amp;#34;&amp;gt;  &amp;lt;h3 name=&amp;#34;subDominant&amp;#34;&amp;gt;D7&amp;lt;/h3&amp;gt;  &amp;lt;/div&amp;gt;  &amp;lt;div class=&amp;#34;col-md-1&amp;#34;&amp;gt;  &amp;lt;h3 style=&amp;#34;text-align: right&amp;#34;&amp;gt;|&amp;lt;/h3&amp;gt;  &amp;lt;/div&amp;gt;  &amp;lt;div class=&amp;#34;col-md-1&amp;#34;&amp;gt;  &amp;lt;h3 name=&amp;#34;root&amp;#34;&amp;gt;A7&amp;lt;/h3&amp;gt;  &amp;lt;/div&amp;gt;  &amp;lt;div class=&amp;#34;col-md-2&amp;#34;&amp;gt;  &amp;lt;h3 style=&amp;#34;text-align: right&amp;#34;&amp;gt;|&amp;lt;/h3&amp;gt;  &amp;lt;/div&amp;gt;  &amp;lt;div class=&amp;#34;col-md-1&amp;#34;&amp;gt;  &amp;lt;h3 name=&amp;#34;root&amp;#34;&amp;gt;A7&amp;lt;/h3&amp;gt;  &amp;lt;/div&amp;gt; &amp;lt;/form&amp;gt; 2.</description>
     </item>
     
