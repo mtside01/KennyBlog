@@ -152,39 +152,39 @@ wsl --install このとき、引数を追加することでインストールさ
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>wsl --install
 </span></span></code></pre></div><p>このとき、引数を追加することでインストールされるLinux ディストリビューションを変更することが出来ますが、今回は特に指定は無いためそのまま実行します。（既定ではUbuntuがインストールされます。）</p>
 <p>無事インストール出来たら一度PCを再起動します。</p>
-<p><img src="/kennyblog/images/2022-04-03/wsl_install.png" alt="wslインストール"></p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-03/wsl_install.png" alt="wslインストール"></p>
 <h2 id="32-docker-desktopのインストール">3.2. Docker Desktopのインストール</h2>
 <p>以下から「Docker Desktop for Windows」をクリックし、Docker Desktopをインストールします。</p>
-<p>※ インストール画面の設定として、「Install required Windows components for WSL2」にチェックが入っていることを確認して下さい。</p>
 <p><a href="https://docs.docker.com/desktop/windows/install/">https://docs.docker.com/desktop/windows/install/</a></p>
-<p><img src="/images/2022-04-03/DockerDesktop_install.png" alt="DockerDesktopインストール"></p>
+<p>※ インストール画面の設定として、「Install required Windows components for WSL2」にチェックが入っていることを確認して下さい。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-03/DockerDesktop_install.png" alt="DockerDesktopインストール"></p>
 <p>無事インストール出来たら「Close and log out」ボタンを押し、一度PCからログアウトします。</p>
-<p><img src="/images/2022-04-03/DockerDesktop_InstallationSucceeded.png" alt="DockerDesktopインストール完了">
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-03/DockerDesktop_InstallationSucceeded.png" alt="DockerDesktopインストール完了">
 　</p>
 <p>再度ログインするとService Agreement画面が表示されるので、チェックを入れて「Accept」します。</p>
-<p><img src="/images/2022-04-03/ServiceAgreement.png" alt="ServiceAgreement">
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-03/ServiceAgreement.png" alt="ServiceAgreement">
 　
 その後、Docker Desktop画面にてチュートリアルが始まりますが、この時点ではスキップしてしまって良いです。</p>
-<p><img src="/images/2022-04-03/SkipTutorial.png" alt="Skip tutorial"></p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-03/SkipTutorial.png" alt="Skip tutorial"></p>
 <p>　
 <!-- raw HTML omitted --></p>
 <h1 id="4-動作確認">4. 動作確認</h1>
 <h2 id="41-docker-desktop">4.1. Docker Desktop</h2>
 <p>Docker Desktopを起動し、WindowsメニューバーのインジケータからDocker Desktopの状態を確認します。</p>
 <p>「Docker Desktop Running」状態になっていればOKです。</p>
-<p><img src="images/2022-04-03/DockerRunning.png" alt="Docker Running"></p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-03/DockerRunning.png" alt="Docker Running"></p>
 <h2 id="42-linuxubuntu上でdocker環境の確認">4.2. Linux（Ubuntu）上でDocker環境の確認</h2>
 <p>上記環境構築でインストールしたLinux（Ubuntu）環境上で、Dockerイメージを正しく展開できるかを確認します。</p>
 <p>「Ubuntu on Windows」もしくは「Windows Terminal」等でUbuntuへCLIアクセスします。</p>
 <p>※ 初回アクセス時はAdminユーザ情報の入力を求められるかもしれません</p>
 <p>以下CLI上で以下のコマンドを実行し、正しくversion情報が取得出来たらOKです。</p>
 <pre tabindex="0"><code>docker --version
-</code></pre><p><img src="/images/2022-04-03/DockerVersion.png" alt="Docker Version"></p>
+</code></pre><p><img src="https://mtside01.github.io/kennyblog/images/2022-04-03/DockerVersion.png" alt="Docker Version"></p>
 <h2 id="43-docker-imageの実行">4.3. Docker imageの実行</h2>
 <p>上記で開いているCLI上で以下のコマンドを実行します。</p>
 <pre tabindex="0"><code>docker run hello-world
 </code></pre><p>しばらく待った後に、<code>Hello from Docker! This message shows that your installation appears to be working correctly.</code>のようなメッセージが表示されればOKです。</p>
-<p><img src="/images/2022-04-03/HelloWorld.png" alt="hello world"></p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-03/HelloWorld.png" alt="hello world"></p>
 <p>　
 <!-- raw HTML omitted --></p>
 <h1 id="5-おわりに">5. おわりに</h1>
