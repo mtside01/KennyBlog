@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on けにぶろぐ</title>
+    <link>https://mtside01.github.io/kennyblog/tags/docker/</link>
+    <description>Recent content in Docker on けにぶろぐ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sun, 03 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker Desktop環境構築</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-04-03_docker-desktop%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/</link>
+      <pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-04-03_docker-desktop%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/</guid>
+      <description>1. 概要 2. 実行環境 3. 環境構築  3.1. WSL2を有効化する 3.2. Docker Desktopのインストール   4. 動作確認  4.1. Docker Desktop 4.2. Linux（Ubuntu）上でDocker環境の確認 4.3. Docker imageの実行   5. おわりに  1. 概要 PCが変わる度に１から環境構築や、環境差異に応じたトラブルシュートをするのが面倒だったのでDockerを導入してみます。
+とりあえずは、直近で必要だったDocker Desktopの導入～Blazor WebAssembly実行環境構築までの手順を備忘録として記載するつもりです。
+この記事ではまず、Docker Desktopの導入/実行確認までを行います。
+　2. 実行環境 Windows 10 version 21H1 (OSビルド19043.1469)
+　3. 環境構築 基本的には以下公式手順に従って実行していきます。
+https://docs.docker.com/desktop/windows/install/
+3.1. WSL2を有効化する WSL2を有効化することで、Windows上にLinux環境を構築することが可能となります。 今回はWindows上でLinux用のDockerコンテナを動作させたいのでこれをインストールする必要があります。
+作業詳細は以下Microsoftドキュメントを参照
+https://docs.microsoft.com/ja-jp/windows/wsl/install
+管理者権限でPowerShellを開き、以下コマンドを実行します。
+wsl --install このとき、引数を追加することでインストールされるLinux ディストリビューションを変更することが出来ますが、今回は特に指定は無いためそのまま実行します。（既定ではUbuntuがインストールされます。）
+無事インストール出来たら一度PCを再起動します。
+3.2. Docker Desktopのインストール 以下から「Docker Desktop for Windows」をクリックし、Docker Desktopをインストールします。</description>
+    </item>
+    
+  </channel>
+</rss>
