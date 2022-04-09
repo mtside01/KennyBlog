@@ -17,24 +17,24 @@
 上記で公開しています。
 現在の西暦/和暦と日時を表示します。
 最近よく署名等で令和何年かを書かされることが多いのですが、 いつも分からなくなるのでスマホのホーム画面にAppとして置いておきたくて作りました。
-)
 1.2. ソースコード https://github.com/mtside01/VueClock
 　2. ポイント（備忘録） 2.1. CDNでのVue.js導入 CDNを使ってサクッとVue.jsを使えるようにします。 Body内に以下を記載するだけです。
 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js&#34;&gt;&lt;/script&gt; ※ 最新版は以下公式ページを確認
 https://jp.vuejs.org/v2/guide/installation.html
-　2.2. HTML要素とVueインスタンスを連動させる 2.2.1. HTML要素に記載したidとVueインスタンスのel（エレメント）オプションを紐づける これを行うことで、id指定した要素内でVueが扱えるようになります。"/>
+　2.2. HTML要素とVueインスタンスを連動させる 2.2.1. HTML要素に記載したidとVueインスタンスのel（エレメント）オプションを紐づける これを行うことで、id指定した要素内でVueが扱えるようになります。
+以下のように&quot;app&quot;/&quot;#app&quot;を指定することで紐づけています。"/>
 
     <meta property="og:title" content="Vue.jsで作る西暦/和暦および日時表示App" />
 <meta property="og:description" content="目次  目次 1. 作ったもの  1.1. デモ 1.2. ソースコード   2. ポイント（備忘録）  2.1. CDNでのVue.js導入 2.2. HTML要素とVueインスタンスを連動させる  2.2.1. HTML要素に記載したidとVueインスタンスのel（エレメント）オプションを紐づける 2.2.2. マスタッシュ構文を使ってVueで定義したdata変数を埋め込む   2.3. Vue mountedを使用して、DOM生成後をトリガーに関数を実行する 2.4. スマホ用のサイズ調整   3. 感想・改善したい点 4. 参考  　1. 作ったもの 1.1. デモ https://mtside01.github.io/VueClock/
 上記で公開しています。
 現在の西暦/和暦と日時を表示します。
 最近よく署名等で令和何年かを書かされることが多いのですが、 いつも分からなくなるのでスマホのホーム画面にAppとして置いておきたくて作りました。
-)
 1.2. ソースコード https://github.com/mtside01/VueClock
 　2. ポイント（備忘録） 2.1. CDNでのVue.js導入 CDNを使ってサクッとVue.jsを使えるようにします。 Body内に以下を記載するだけです。
 &lt;script src=&#34;https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js&#34;&gt;&lt;/script&gt; ※ 最新版は以下公式ページを確認
 https://jp.vuejs.org/v2/guide/installation.html
-　2.2. HTML要素とVueインスタンスを連動させる 2.2.1. HTML要素に記載したidとVueインスタンスのel（エレメント）オプションを紐づける これを行うことで、id指定した要素内でVueが扱えるようになります。" />
+　2.2. HTML要素とVueインスタンスを連動させる 2.2.1. HTML要素に記載したidとVueインスタンスのel（エレメント）オプションを紐づける これを行うことで、id指定した要素内でVueが扱えるようになります。
+以下のように&quot;app&quot;/&quot;#app&quot;を指定することで紐づけています。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://mtside01.github.io/kennyblog/posts/2022-04-09_vue.js%E3%81%A7%E4%BD%9C%E3%82%8B%E8%A5%BF%E6%9A%A6%E5%92%8C%E6%9A%A6%E3%81%8A%E3%82%88%E3%81%B3%E6%97%A5%E6%99%82%E8%A1%A8%E7%A4%BAapp/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-04-09T00:00:00+00:00" />
@@ -142,7 +142,7 @@ https://jp.vuejs.org/v2/guide/installation.html
 <p>現在の西暦/和暦と日時を表示します。</p>
 <p>最近よく署名等で令和何年かを書かされることが多いのですが、
 いつも分からなくなるのでスマホのホーム画面にAppとして置いておきたくて作りました。</p>
-<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/VueClock.png" alt="VueClock">)</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/VueClock.jpg" alt="VueClock"></p>
 <h2 id="12-ソースコード">1.2. ソースコード</h2>
 <p><a href="https://github.com/mtside01/VueClock">https://github.com/mtside01/VueClock</a></p>
 <p>　
@@ -189,9 +189,9 @@ https://jp.vuejs.org/v2/guide/installation.html
 <h2 id="24-スマホ用のサイズ調整">2.4. スマホ用のサイズ調整</h2>
 <p>スマホ表示用にサイズ調整する場合、Google Chromeのデベロッパーツールが便利だった。</p>
 <p>htmlファイルをGoogle Chromeで開き、三点リーダから、「その他のツール」→「デベロッパーツール」を選択</p>
-<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/developperTool.png" alt="Developer Tool">)</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/developerTool.png" alt="Developer Tool"></p>
 <p>左上から確認したい画面サイズを選択する</p>
-<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/Dimensions.png" alt="Dimensions">)</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/Dimensions.png" alt="Dimensions"></p>
 <p>　
 <!-- raw HTML omitted --></p>
 <h1 id="3-感想改善したい点">3. 感想・改善したい点</h1>
@@ -199,8 +199,8 @@ https://jp.vuejs.org/v2/guide/installation.html
 <li>Vue.jsは結構シンプルな記載で画面に動きを付けられるのがとても良い。今後も多用する予感。</li>
 <li>作ったAppをPWA化しないとスマホのホーム画面に表示できないかなあ、とか考えてたけど何も工夫せず普通に出来てしまった。</li>
 </ul>
-<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/AddToHome.jpg" alt="AddToHome">)</p>
-<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/Home.jpg" alt="Home">)</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/AddToHome.jpg" alt="AddToHome"></p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/Home.jpg" alt="Home"></p>
 <ul>
 <li>あと何個かApp作って慣れてきたらもうちょっとロジックが複雑なものを作ってみようかな</li>
 </ul>
