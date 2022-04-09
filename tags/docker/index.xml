@@ -13,7 +13,7 @@
       <pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://mtside01.github.io/kennyblog/posts/2022-04-03_docker-desktop%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/</guid>
-      <description>1. 概要 2. 実行環境 3. 環境構築  3.1. WSL2を有効化する 3.2. Docker Desktopのインストール   4. 動作確認  4.1. Docker Desktop 4.2. Linux（Ubuntu）上でDocker環境の確認 4.3. Docker imageの実行   5. おわりに  1. 概要 PCが変わる度に１から環境構築や、環境差異に応じたトラブルシュートをするのが面倒だったのでDockerを導入してみます。
+      <description>目次  目次 1. 概要 2. 実行環境 3. 環境構築  3.1. WSL2を有効化する 3.2. Docker Desktopのインストール   4. 動作確認  4.1. Docker Desktop 4.2. Linux（Ubuntu）上でDocker環境の確認 4.3. Docker imageの実行   5. おわりに  　1. 概要 PCが変わる度に１から環境構築や、環境差異に応じたトラブルシュートをするのが面倒だったのでDockerを導入してみます。
 とりあえずは、直近で必要だったDocker Desktopの導入～Blazor WebAssembly実行環境構築までの手順を備忘録として記載するつもりです。
 この記事ではまず、Docker Desktopの導入/実行確認までを行います。
 　2. 実行環境 Windows 10 version 21H1 (OSビルド19043.1469)

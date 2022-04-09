@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ja-jp">
+  <head>
+    <title>Vue.jsで作る西暦/和暦および日時表示App // けにぶろぐ</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.95.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="けにー" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://mtside01.github.io/kennyblog/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Vue.jsで作る西暦/和暦および日時表示App"/>
+<meta name="twitter:description" content="目次  目次 1. 作ったもの  1.1. デモ 1.2. ソースコード   2. ポイント（備忘録）  2.1. CDNでのVue.js導入 2.2. HTML要素とVueインスタンスを連動させる  2.2.1. HTML要素に記載したidとVueインスタンスのel（エレメント）オプションを紐づける 2.2.2. マスタッシュ構文を使ってVueで定義したdata変数を埋め込む   2.3. Vue mountedを使用して、DOM生成後をトリガーに関数を実行する 2.4. スマホ用のサイズ調整   3. 感想・改善したい点 4. 参考  　1. 作ったもの 1.1. デモ https://mtside01.github.io/VueClock/
+上記で公開しています。
+現在の西暦/和暦と日時を表示します。
+最近よく署名等で令和何年かを書かされることが多いのですが、 いつも分からなくなるのでスマホのホーム画面にAppとして置いておきたくて作りました。
+)
+1.2. ソースコード https://github.com/mtside01/VueClock
+　2. ポイント（備忘録） 2.1. CDNでのVue.js導入 CDNを使ってサクッとVue.jsを使えるようにします。 Body内に以下を記載するだけです。
+&lt;script src=&#34;https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js&#34;&gt;&lt;/script&gt; ※ 最新版は以下公式ページを確認
+https://jp.vuejs.org/v2/guide/installation.html
+　2.2. HTML要素とVueインスタンスを連動させる 2.2.1. HTML要素に記載したidとVueインスタンスのel（エレメント）オプションを紐づける これを行うことで、id指定した要素内でVueが扱えるようになります。"/>
+
+    <meta property="og:title" content="Vue.jsで作る西暦/和暦および日時表示App" />
+<meta property="og:description" content="目次  目次 1. 作ったもの  1.1. デモ 1.2. ソースコード   2. ポイント（備忘録）  2.1. CDNでのVue.js導入 2.2. HTML要素とVueインスタンスを連動させる  2.2.1. HTML要素に記載したidとVueインスタンスのel（エレメント）オプションを紐づける 2.2.2. マスタッシュ構文を使ってVueで定義したdata変数を埋め込む   2.3. Vue mountedを使用して、DOM生成後をトリガーに関数を実行する 2.4. スマホ用のサイズ調整   3. 感想・改善したい点 4. 参考  　1. 作ったもの 1.1. デモ https://mtside01.github.io/VueClock/
+上記で公開しています。
+現在の西暦/和暦と日時を表示します。
+最近よく署名等で令和何年かを書かされることが多いのですが、 いつも分からなくなるのでスマホのホーム画面にAppとして置いておきたくて作りました。
+)
+1.2. ソースコード https://github.com/mtside01/VueClock
+　2. ポイント（備忘録） 2.1. CDNでのVue.js導入 CDNを使ってサクッとVue.jsを使えるようにします。 Body内に以下を記載するだけです。
+&lt;script src=&#34;https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js&#34;&gt;&lt;/script&gt; ※ 最新版は以下公式ページを確認
+https://jp.vuejs.org/v2/guide/installation.html
+　2.2. HTML要素とVueインスタンスを連動させる 2.2.1. HTML要素に記載したidとVueインスタンスのel（エレメント）オプションを紐づける これを行うことで、id指定した要素内でVueが扱えるようになります。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mtside01.github.io/kennyblog/posts/2022-04-09_vue.js%E3%81%A7%E4%BD%9C%E3%82%8B%E8%A5%BF%E6%9A%A6%E5%92%8C%E6%9A%A6%E3%81%8A%E3%82%88%E3%81%B3%E6%97%A5%E6%99%82%E8%A1%A8%E7%A4%BAapp/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-09T00:00:00+00:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://mtside01.github.io/kennyblog/"><img class="app-header-avatar" src="/kennyblog/images/neko.png" alt="けにー" /></a>
+      <h1>けにぶろぐ</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/kennyblog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/about/">About</a>
+      </nav>
+      <p>備忘録や勉強のアウトプットの場</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Vue.jsで作る西暦/和暦および日時表示App</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 9, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/html/">HTML</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/css/">CSS</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/javascript/">JavaScript</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/vue.js/">Vue.js</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="目次">目次</h1>
+<ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#1-%E4%BD%9C%E3%81%A3%E3%81%9F%E3%82%82%E3%81%AE">1. 作ったもの</a>
+<ul>
+<li><a href="#11-%E3%83%87%E3%83%A2">1.1. デモ</a></li>
+<li><a href="#12-%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">1.2. ソースコード</a></li>
+</ul>
+</li>
+<li><a href="#2-%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E5%82%99%E5%BF%98%E9%8C%B2">2. ポイント（備忘録）</a>
+<ul>
+<li><a href="#21-cdn%E3%81%A7%E3%81%AEvuejs%E5%B0%8E%E5%85%A5">2.1. CDNでのVue.js導入</a></li>
+<li><a href="#22-html%E8%A6%81%E7%B4%A0%E3%81%A8vue%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E3%82%92%E9%80%A3%E5%8B%95%E3%81%95%E3%81%9B%E3%82%8B">2.2. HTML要素とVueインスタンスを連動させる</a>
+<ul>
+<li><a href="#221-html%E8%A6%81%E7%B4%A0%E3%81%AB%E8%A8%98%E8%BC%89%E3%81%97%E3%81%9Fid%E3%81%A8vue%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E3%81%AEel%E3%82%A8%E3%83%AC%E3%83%A1%E3%83%B3%E3%83%88%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E7%B4%90%E3%81%A5%E3%81%91%E3%82%8B">2.2.1. HTML要素に記載したidとVueインスタンスのel（エレメント）オプションを紐づける</a></li>
+<li><a href="#222-%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%83%E3%82%B7%E3%83%A5%E6%A7%8B%E6%96%87%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6vue%E3%81%A7%E5%AE%9A%E7%BE%A9%E3%81%97%E3%81%9Fdata%E5%A4%89%E6%95%B0%E3%82%92%E5%9F%8B%E3%82%81%E8%BE%BC%E3%82%80">2.2.2. マスタッシュ構文を使ってVueで定義したdata変数を埋め込む</a></li>
+</ul>
+</li>
+<li><a href="#23-vue-mounted%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6dom%E7%94%9F%E6%88%90%E5%BE%8C%E3%82%92%E3%83%88%E3%83%AA%E3%82%AC%E3%83%BC%E3%81%AB%E9%96%A2%E6%95%B0%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B">2.3. Vue mountedを使用して、DOM生成後をトリガーに関数を実行する</a></li>
+<li><a href="#24-%E3%82%B9%E3%83%9E%E3%83%9B%E7%94%A8%E3%81%AE%E3%82%B5%E3%82%A4%E3%82%BA%E8%AA%BF%E6%95%B4">2.4. スマホ用のサイズ調整</a></li>
+</ul>
+</li>
+<li><a href="#3-%E6%84%9F%E6%83%B3%E6%94%B9%E5%96%84%E3%81%97%E3%81%9F%E3%81%84%E7%82%B9">3. 感想・改善したい点</a></li>
+<li><a href="#4-%E5%8F%82%E8%80%83">4. 参考</a></li>
+</ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="1-作ったもの">1. 作ったもの</h1>
+<h2 id="11-デモ">1.1. デモ</h2>
+<p><a href="https://mtside01.github.io/VueClock/">https://mtside01.github.io/VueClock/</a></p>
+<p>上記で公開しています。</p>
+<p>現在の西暦/和暦と日時を表示します。</p>
+<p>最近よく署名等で令和何年かを書かされることが多いのですが、
+いつも分からなくなるのでスマホのホーム画面にAppとして置いておきたくて作りました。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/VueClock.png" alt="VueClock">)</p>
+<h2 id="12-ソースコード">1.2. ソースコード</h2>
+<p><a href="https://github.com/mtside01/VueClock">https://github.com/mtside01/VueClock</a></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="2-ポイント備忘録">2. ポイント（備忘録）</h1>
+<h2 id="21-cdnでのvuejs導入">2.1. CDNでのVue.js導入</h2>
+<p>CDNを使ってサクッとVue.jsを使えるようにします。
+<code>Body</code>内に以下を記載するだけです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>※ 最新版は以下公式ページを確認</p>
+<p><a href="https://jp.vuejs.org/v2/guide/installation.html">https://jp.vuejs.org/v2/guide/installation.html</a></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h2 id="22-html要素とvueインスタンスを連動させる">2.2. HTML要素とVueインスタンスを連動させる</h2>
+<h3 id="221-html要素に記載したidとvueインスタンスのelエレメントオプションを紐づける">2.2.1. HTML要素に記載したidとVueインスタンスのel（エレメント）オプションを紐づける</h3>
+<p>これを行うことで、id指定した要素内でVueが扱えるようになります。</p>
+<p>以下のように&quot;app&quot;/&quot;#app&quot;を指定することで紐づけています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;wrap&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#app&#34;</span>,
+</span></span></code></pre></div><h3 id="222-マスタッシュ構文を使ってvueで定義したdata変数を埋め込む">2.2.2. マスタッシュ構文を使ってVueで定義したdata変数を埋め込む</h3>
+<p>マスタッシュ構文<code>{{ 変数名 }}</code>を使うことで、Vueで定義したdata変数をHTML要素に埋め込むことが出来ます。</p>
+<p>今回は、{{year}}、{{date}}、{{time}}の3つを用意しました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;year&#34;</span>&gt;{{year}}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;date&#34;</span>&gt;{{date}}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;time&#34;</span>&gt;{{time}}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">year</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">time</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">week</span><span style="color:#f92672">:</span>[<span style="color:#e6db74">&#34;(日)&#34;</span>,<span style="color:#e6db74">&#34;(月)&#34;</span>,<span style="color:#e6db74">&#34;(火)&#34;</span>,<span style="color:#e6db74">&#34;(水)&#34;</span>,<span style="color:#e6db74">&#34;(木)&#34;</span>,<span style="color:#e6db74">&#34;(金)&#34;</span>,<span style="color:#e6db74">&#34;(土)&#34;</span>]
+</span></span><span style="display:flex;"><span>    },
+</span></span></code></pre></div><p>　
+<!-- raw HTML omitted --></p>
+<h2 id="23-vue-mountedを使用してdom生成後をトリガーに関数を実行する">2.3. Vue mountedを使用して、DOM生成後をトリガーに関数を実行する</h2>
+<p>Vue mountedを使用することで、DOM(Document Object Model)が生成され、画面描画されたタイミングをトリガーとして呼び出す関数を作成しています。
+更にその関数内で<code>setInterval()</code>を実行することで、一定間隔で時刻表示の更新を行っています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#a6e22e">mounted</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setInterval</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateTime</span>,<span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>ちなみに似たような機能に<code>created</code>があるが、これはDOM生成前がトリガーとなるらしい。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h2 id="24-スマホ用のサイズ調整">2.4. スマホ用のサイズ調整</h2>
+<p>スマホ表示用にサイズ調整する場合、Google Chromeのデベロッパーツールが便利だった。</p>
+<p>htmlファイルをGoogle Chromeで開き、三点リーダから、「その他のツール」→「デベロッパーツール」を選択</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/developperTool.png" alt="Developer Tool">)</p>
+<p>左上から確認したい画面サイズを選択する</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/Dimensions.png" alt="Dimensions">)</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="3-感想改善したい点">3. 感想・改善したい点</h1>
+<ul>
+<li>Vue.jsは結構シンプルな記載で画面に動きを付けられるのがとても良い。今後も多用する予感。</li>
+<li>作ったAppをPWA化しないとスマホのホーム画面に表示できないかなあ、とか考えてたけど何も工夫せず普通に出来てしまった。</li>
+</ul>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/AddToHome.jpg" alt="AddToHome">)</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-09/Home.jpg" alt="Home">)</p>
+<ul>
+<li>あと何個かApp作って慣れてきたらもうちょっとロジックが複雑なものを作ってみようかな</li>
+</ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="4-参考">4. 参考</h1>
+<ul>
+<li><a href="https://newsite-make.com/vue-study/">Vue.jsの勉強法</a></li>
+<li><a href="https://www.youtube.com/watch?v=cL3Al628mLE&amp;list=PLh6V6_7fbbo-SZYHHBVFstU2tp0dDZMAW">Vue.js入門</a></li>
+<li><a href="https://newsite-make.com/vue-clock/">Vue.jsでデジタル時計アプリの作り方（超初心者用）</a></li>
+<li><a href="https://qiita.com/mackeyTA/items/ddf102a48da65c70162f">Vue.js入門 マスタッシュ構文、ディレクティブ、オプション</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
