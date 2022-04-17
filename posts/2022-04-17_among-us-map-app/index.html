@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ja-jp">
+  <head>
+    <title>Among Us Map App // けにぶろぐ</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.95.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="けにー" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://mtside01.github.io/kennyblog/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Among Us Map App"/>
+<meta name="twitter:description" content="目次  目次 1. 作ったもの  1.1. デモ 1.2. ソースコード   2. ポイント（備忘録）  2.1. CDNでBootstrapを導入 2.2. Bootstrap Iconsの導入 2.3. 各メニューアイコン色をマウスオーバーに応じて変更する 2.4. メニューボタンのクリックに応じて画面に表示する画像を切り替える 2.5. ハンバーガーメニューのクリックに応じてメニュー一覧の表示/非表示を切り替える   3. 感想  　1. 作ったもの 1.1. デモ https://mtside01.github.io/AmongUsMap/
+上記で公開しています。
+Among Usというゲーム用のMapを表示するAppです。（2022/04/17時点で使用可能な全マップ対応）
+ちなみにAmong Usとは宇宙空間で行う人狼ゲームのようなもので、僕はここ１年くらいハマっており月１、２回のペースで学生時代の友人と遊んでいます。
+http://www.h2int.com/games/among-us/
+ゲーム内での自身の行動をメンバに情報共有するために、マップを手元に開いておくことがほぼ必須となるのですが、 いちいち画像検索したりするのが手間だったのでワンクリックでマップを表示できるアプリを作ってみました。
+1.2. ソースコード https://github.com/mtside01/AmongUsMap
+　2. ポイント（備忘録） 2.1. CDNでBootstrapを導入 僕のブログではおなじみの作業です。
+今回のAppではBootstrap Icons、flex-row/flex-columnクラスを使用したかったので導入しています。
+&lt;head&gt;  &lt;!-- Required meta tags --&gt;  &lt;meta charset=&#34;utf-8&#34;&gt;  &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34;&gt;  &lt;!"/>
+
+    <meta property="og:title" content="Among Us Map App" />
+<meta property="og:description" content="目次  目次 1. 作ったもの  1.1. デモ 1.2. ソースコード   2. ポイント（備忘録）  2.1. CDNでBootstrapを導入 2.2. Bootstrap Iconsの導入 2.3. 各メニューアイコン色をマウスオーバーに応じて変更する 2.4. メニューボタンのクリックに応じて画面に表示する画像を切り替える 2.5. ハンバーガーメニューのクリックに応じてメニュー一覧の表示/非表示を切り替える   3. 感想  　1. 作ったもの 1.1. デモ https://mtside01.github.io/AmongUsMap/
+上記で公開しています。
+Among Usというゲーム用のMapを表示するAppです。（2022/04/17時点で使用可能な全マップ対応）
+ちなみにAmong Usとは宇宙空間で行う人狼ゲームのようなもので、僕はここ１年くらいハマっており月１、２回のペースで学生時代の友人と遊んでいます。
+http://www.h2int.com/games/among-us/
+ゲーム内での自身の行動をメンバに情報共有するために、マップを手元に開いておくことがほぼ必須となるのですが、 いちいち画像検索したりするのが手間だったのでワンクリックでマップを表示できるアプリを作ってみました。
+1.2. ソースコード https://github.com/mtside01/AmongUsMap
+　2. ポイント（備忘録） 2.1. CDNでBootstrapを導入 僕のブログではおなじみの作業です。
+今回のAppではBootstrap Icons、flex-row/flex-columnクラスを使用したかったので導入しています。
+&lt;head&gt;  &lt;!-- Required meta tags --&gt;  &lt;meta charset=&#34;utf-8&#34;&gt;  &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34;&gt;  &lt;!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mtside01.github.io/kennyblog/posts/2022-04-17_among-us-map-app/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-17T00:00:00+00:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://mtside01.github.io/kennyblog/"><img class="app-header-avatar" src="/kennyblog/images/neko.png" alt="けにー" /></a>
+      <h1>けにぶろぐ</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/kennyblog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/about/">About</a>
+      </nav>
+      <p>備忘録や勉強のアウトプットの場</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Among Us Map App</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 17, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/html/">HTML</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/css/">CSS</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/javascript/">JavaScript</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/bootstrap/">Bootstrap</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="目次">目次</h1>
+<ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#1-%E4%BD%9C%E3%81%A3%E3%81%9F%E3%82%82%E3%81%AE">1. 作ったもの</a>
+<ul>
+<li><a href="#11-%E3%83%87%E3%83%A2">1.1. デモ</a></li>
+<li><a href="#12-%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">1.2. ソースコード</a></li>
+</ul>
+</li>
+<li><a href="#2-%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E5%82%99%E5%BF%98%E9%8C%B2">2. ポイント（備忘録）</a>
+<ul>
+<li><a href="#21-cdn%E3%81%A7bootstrap%E3%82%92%E5%B0%8E%E5%85%A5">2.1. CDNでBootstrapを導入</a></li>
+<li><a href="#22-bootstrap-icons%E3%81%AE%E5%B0%8E%E5%85%A5">2.2. Bootstrap Iconsの導入</a></li>
+<li><a href="#23-%E5%90%84%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E8%89%B2%E3%82%92%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%81%AB%E5%BF%9C%E3%81%98%E3%81%A6%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B">2.3. 各メニューアイコン色をマウスオーバーに応じて変更する</a></li>
+<li><a href="#24-%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%9C%E3%82%BF%E3%83%B3%E3%81%AE%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%81%AB%E5%BF%9C%E3%81%98%E3%81%A6%E7%94%BB%E9%9D%A2%E3%81%AB%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B%E7%94%BB%E5%83%8F%E3%82%92%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88%E3%82%8B">2.4. メニューボタンのクリックに応じて画面に表示する画像を切り替える</a></li>
+<li><a href="#25-%E3%83%8F%E3%83%B3%E3%83%90%E3%83%BC%E3%82%AC%E3%83%BC%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E3%81%AE%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%81%AB%E5%BF%9C%E3%81%98%E3%81%A6%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E4%B8%80%E8%A6%A7%E3%81%AE%E8%A1%A8%E7%A4%BA%E9%9D%9E%E8%A1%A8%E7%A4%BA%E3%82%92%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88%E3%82%8B">2.5. ハンバーガーメニューのクリックに応じてメニュー一覧の表示/非表示を切り替える</a></li>
+</ul>
+</li>
+<li><a href="#3-%E6%84%9F%E6%83%B3">3. 感想</a></li>
+</ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="1-作ったもの">1. 作ったもの</h1>
+<h2 id="11-デモ">1.1. デモ</h2>
+<p><a href="https://mtside01.github.io/AmongUsMap/">https://mtside01.github.io/AmongUsMap/</a></p>
+<p>上記で公開しています。</p>
+<p>Among Usというゲーム用のMapを表示するAppです。（2022/04/17時点で使用可能な全マップ対応）</p>
+<p><img src="https://media.giphy.com/media/DFS5ISGv6nM1y08CeU/giphy.gif" alt="Among Us Map"></p>
+<p>ちなみにAmong Usとは宇宙空間で行う人狼ゲームのようなもので、僕はここ１年くらいハマっており月１、２回のペースで学生時代の友人と遊んでいます。</p>
+<p><a href="http://www.h2int.com/games/among-us/">http://www.h2int.com/games/among-us/</a></p>
+<p>ゲーム内での自身の行動をメンバに情報共有するために、マップを手元に開いておくことがほぼ必須となるのですが、
+いちいち画像検索したりするのが手間だったのでワンクリックでマップを表示できるアプリを作ってみました。</p>
+<h2 id="12-ソースコード">1.2. ソースコード</h2>
+<p><a href="https://github.com/mtside01/AmongUsMap">https://github.com/mtside01/AmongUsMap</a></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="2-ポイント備忘録">2. ポイント（備忘録）</h1>
+<h2 id="21-cdnでbootstrapを導入">2.1. CDNでBootstrapを導入</h2>
+<p>僕のブログではおなじみの作業です。</p>
+<p>今回のAppではBootstrap Icons、flex-row/flex-columnクラスを使用したかったので導入しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Required meta tags --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Bootstrap CSS --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1&#34;</span> <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;body&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Optional JavaScript; choose one of the two! --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Option 1: Bootstrap Bundle with Popper --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js&#34;</span> <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW&#34;</span> <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Option 2: Separate Popper and Bootstrap JS --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js&#34; integrity=&#34;sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js&#34; integrity=&#34;sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    --&gt;</span>
+</span></span></code></pre></div><h2 id="22-bootstrap-iconsの導入">2.2. Bootstrap Iconsの導入</h2>
+<p>ハンバーガーメニューアイコンが欲しかったので、Bootstrap Iconsを利用してサクッと導入していきます。</p>
+<p><a href="https://icons.getbootstrap.jp/">https://icons.getbootstrap.jp/</a></p>
+<p>上記サイトから使いたいアイコンを選んで、HTMLをコピーしてくるだけです。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-17/IconsHTML.jpg" alt="IconsHTML"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span>&lt;<span style="color:#f92672">svg</span> <span style="color:#a6e22e">xmlns</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.w3.org/2000/svg&#34;</span> <span style="color:#a6e22e">fill</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;currentColor&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bi bi-list menuIcon&#34;</span> <span style="color:#a6e22e">viewBox</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0 0 16 16&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">path</span> <span style="color:#a6e22e">fill-rule</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;evenodd&#34;</span> <span style="color:#a6e22e">d</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">svg</span>&gt;
+</span></span></code></pre></div><h2 id="23-各メニューアイコン色をマウスオーバーに応じて変更する">2.3. 各メニューアイコン色をマウスオーバーに応じて変更する</h2>
+<p>上記で導入したBootstrap Iconsのカラーはcssで指定しているcolorプロパティに影響されます。</p>
+<p>今回は通常時は白、マウスオーバー時は緑にしたかったので、hover疑似クラスを使用しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">menuIcon</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#FFFFFF</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">50</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">height</span>: <span style="color:#66d9ef">auto</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">menuIcon</span>:<span style="color:#a6e22e">hover</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#0DF205</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>同様に、各マップ表示用メニューボタンのcssにもhover擬似クラスでマウスオーバー時の色を指定します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">button</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#000000</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">border</span>: <span style="color:#ae81ff">4</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">border-color</span>: <span style="color:#ae81ff">#FFFFFF</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">border-radius</span>:<span style="color:#ae81ff">12</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0.5</span><span style="color:#66d9ef">vh</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">vw</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">15</span><span style="color:#66d9ef">vw</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">button</span>:<span style="color:#a6e22e">hover</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">border-color</span>: <span style="color:#ae81ff">#0DF205</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="24-メニューボタンのクリックに応じて画面に表示する画像を切り替える">2.4. メニューボタンのクリックに応じて画面に表示する画像を切り替える</h2>
+<p>各マップ表示用メニューボタンのクリックに応じて、画面中央に表示する画像を切り替えたかったので、<code>showMap()</code>というJavaScrip関数を用意し、各ボタンのクリック時の動作に紐づけています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;d-flex flex-column&#34;</span> <span style="color:#a6e22e">id </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;menu&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;showMap(0)&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./images/skeld_logo.png&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;menulogo&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;showMap(1)&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./images/mirahq_logo.png&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;menulogo&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;showMap(2)&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./images/polus_logo.png&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;menulogo&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;showMap(3)&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./images/airship_logo.png&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;menulogo&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><p>それぞれのボタン毎に引数値を変え、引数に応じて予め用意した配列<code>mapString</code>から文字列を取得しています。
+それを利用して画像ファイルまでのパスを記載しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">img</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">mapString</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Array(<span style="color:#e6db74">&#39;skeld&#39;</span>, <span style="color:#e6db74">&#39;mirahq&#39;</span>, <span style="color:#e6db74">&#39;polus&#39;</span>, <span style="color:#e6db74">&#39;airship&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">showMap</span>(<span style="color:#a6e22e">mapNum</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">img</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;image_file&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./images/&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">mapString</span>[<span style="color:#a6e22e">mapNum</span>] <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;_map.png&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>画像表示用img要素には予め<code>image_file</code>というidを指定しておくことで、JavaScript側からのsrc記載変更を可能としています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image_file&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./images/skeld_map.png&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;map&#34;</span>&gt;
+</span></span></code></pre></div><h2 id="25-ハンバーガーメニューのクリックに応じてメニュー一覧の表示非表示を切り替える">2.5. ハンバーガーメニューのクリックに応じてメニュー一覧の表示/非表示を切り替える</h2>
+<p>ハンバーガーメニューのクリックに応じてマップを画面最大表示にしたかったので、
+クリック時にcssクラスの追加/削除を行えるJavaScript関数<code>toggleMenu()</code>を用意しました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span>&lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;menuButton&#34;</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;toggleMenu()&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>…
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image_file&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./images/skeld_map.png&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;map&#34;</span>&gt;
+</span></span></code></pre></div><p>css要素の追加/削除にはclassListプロパティを使用しています。</p>
+<p><code>classList.add()</code>で指定したcssクラスを追加、<code>classList.remove()</code>で指定したcssクラスを削除しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">showMenu</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">toggleMenu</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">menuElem</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;menu&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">imgElem</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;image_file&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">showMenu</span> <span style="color:#f92672">=</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">showMenu</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">showMenu</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">true</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">menuElem</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#e6db74">&#34;menubar&#34;</span>);  
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">imgElem</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#e6db74">&#34;enlargeMap&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">menuElem</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;menubar&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">imgElem</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;enlargeMap&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>※ 詳しくは以下などを参照</p>
+<p><a href="https://developer.mozilla.org/ja/docs/Web/API/Element/classList">https://developer.mozilla.org/ja/docs/Web/API/Element/classList</a></p>
+<p>ここで追加しているcssクラスでは単純にメニュー一覧を画面外に追いやる、画像サイズを画面横幅いっぱいに広げるということをしています。</p>
+<p>調べたらもっとスマートなやり方があるかもしれません。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">menubar</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">relative</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">left</span>: <span style="color:#ae81ff">-50</span><span style="color:#66d9ef">vw</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">…</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">enlargeMap</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">vw</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">relative</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">left</span>: <span style="color:#ae81ff">-15</span><span style="color:#66d9ef">vw</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>　
+<!-- raw HTML omitted --></p>
+<h1 id="3-感想">3. 感想</h1>
+<ul>
+<li>hover擬似クラスと表示画像の動的変更は今後も使う機会が多々あるんじゃないかなあ、と思う</li>
+<li>css指定でメニュー一覧を画面外に追いやるというのはクソコード感があるので改善点の一つ</li>
+<li>スマホ画面サイズに対応していないのでそのうち対応したい。PCとスマホ、画面サイズに応じてcss等を切り替える必要がありそう。</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

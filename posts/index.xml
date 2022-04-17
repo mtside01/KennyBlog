@@ -6,7 +6,25 @@
     <description>Recent content in Posts on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sat, 09 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Among Us Map App</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-04-17_among-us-map-app/</link>
+      <pubDate>Sun, 17 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-04-17_among-us-map-app/</guid>
+      <description>目次  目次 1. 作ったもの  1.1. デモ 1.2. ソースコード   2. ポイント（備忘録）  2.1. CDNでBootstrapを導入 2.2. Bootstrap Iconsの導入 2.3. 各メニューアイコン色をマウスオーバーに応じて変更する 2.4. メニューボタンのクリックに応じて画面に表示する画像を切り替える 2.5. ハンバーガーメニューのクリックに応じてメニュー一覧の表示/非表示を切り替える   3. 感想  　1. 作ったもの 1.1. デモ https://mtside01.github.io/AmongUsMap/
+上記で公開しています。
+Among Usというゲーム用のMapを表示するAppです。（2022/04/17時点で使用可能な全マップ対応）
+ちなみにAmong Usとは宇宙空間で行う人狼ゲームのようなもので、僕はここ１年くらいハマっており月１、２回のペースで学生時代の友人と遊んでいます。
+http://www.h2int.com/games/among-us/
+ゲーム内での自身の行動をメンバに情報共有するために、マップを手元に開いておくことがほぼ必須となるのですが、 いちいち画像検索したりするのが手間だったのでワンクリックでマップを表示できるアプリを作ってみました。
+1.2. ソースコード https://github.com/mtside01/AmongUsMap
+　2. ポイント（備忘録） 2.1. CDNでBootstrapを導入 僕のブログではおなじみの作業です。
+今回のAppではBootstrap Icons、flex-row/flex-columnクラスを使用したかったので導入しています。
+&amp;lt;head&amp;gt;  &amp;lt;!-- Required meta tags --&amp;gt;  &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt;  &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, initial-scale=1&amp;#34;&amp;gt;  &amp;lt;!</description>
+    </item>
+    
     <item>
       <title>Vue.jsで作る西暦/和暦および日時表示App</title>
       <link>https://mtside01.github.io/kennyblog/posts/2022-04-09_vue.js%E3%81%A7%E4%BD%9C%E3%82%8B%E8%A5%BF%E6%9A%A6%E5%92%8C%E6%9A%A6%E3%81%8A%E3%82%88%E3%81%B3%E6%97%A5%E6%99%82%E8%A1%A8%E7%A4%BAapp/</link>

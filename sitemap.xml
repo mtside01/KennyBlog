@@ -2,28 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://mtside01.github.io/kennyblog/posts/2022-04-17_among-us-map-app/</loc>
+    <lastmod>2022-04-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/tags/bootstrap/</loc>
+    <lastmod>2022-04-17T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/css/</loc>
-    <lastmod>2022-04-09T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/html/</loc>
-    <lastmod>2022-04-09T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/javascript/</loc>
-    <lastmod>2022-04-09T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/posts/</loc>
-    <lastmod>2022-04-09T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/</loc>
-    <lastmod>2022-04-09T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/</loc>
+    <lastmod>2022-04-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/vue.js/</loc>
     <lastmod>2022-04-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/posts/2022-04-09_vue.js%E3%81%A7%E4%BD%9C%E3%82%8B%E8%A5%BF%E6%9A%A6%E5%92%8C%E6%9A%A6%E3%81%8A%E3%82%88%E3%81%B3%E6%97%A5%E6%99%82%E8%A1%A8%E7%A4%BAapp/</loc>
-    <lastmod>2022-04-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mtside01.github.io/kennyblog/</loc>
     <lastmod>2022-04-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/blazor/</loc>

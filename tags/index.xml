@@ -6,11 +6,20 @@
     <description>Recent content in Tags on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sat, 09 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bootstrap</title>
+      <link>https://mtside01.github.io/kennyblog/tags/bootstrap/</link>
+      <pubDate>Sun, 17 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/tags/bootstrap/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>CSS</title>
       <link>https://mtside01.github.io/kennyblog/tags/css/</link>
-      <pubDate>Sat, 09 Apr 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 17 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://mtside01.github.io/kennyblog/tags/css/</guid>
       <description></description>
@@ -19,7 +28,7 @@
     <item>
       <title>HTML</title>
       <link>https://mtside01.github.io/kennyblog/tags/html/</link>
-      <pubDate>Sat, 09 Apr 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 17 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://mtside01.github.io/kennyblog/tags/html/</guid>
       <description></description>
@@ -28,7 +37,7 @@
     <item>
       <title>JavaScript</title>
       <link>https://mtside01.github.io/kennyblog/tags/javascript/</link>
-      <pubDate>Sat, 09 Apr 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 17 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://mtside01.github.io/kennyblog/tags/javascript/</guid>
       <description></description>
