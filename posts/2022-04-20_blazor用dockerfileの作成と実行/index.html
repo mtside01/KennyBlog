@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ja-jp">
+  <head>
+    <title>Blazor用Dockerfileの作成と実行 // けにぶろぐ</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.95.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="けにー" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://mtside01.github.io/kennyblog/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Blazor用Dockerfileの作成と実行"/>
+<meta name="twitter:description" content="目次  目次 記事リンク 1. 概要 2. Dockerfileの作成  2.1. 空のDockerfileを作成する 2.2. .NET 6 SDK環境用Dockerfile記載   3. 実行確認  3.1. docker build実施 3.2. docker imageの実行 3.3. dotnet versionの確認   4. Blazor作業実施  4.1. Blazor WebAssemblyプロジェクトの新規作成 4.2. Blazor WebAssemblyプロジェクト設定の注意点  4.2.1. launchSetting.json内の「&ldquo;launchBrowser&rdquo;: true」は削除する 4.2.2. 使用するポートを統一する  4.2.2.1. launchSetting.json内の「applicationUrl」を削除しておく 4.2.2.2. dockerfile記載の「ASPNETCORE_URLS=」値とdocker run時に-pオプションで指定するポートを一致させておく     4.3. Blazor WebAssemblyをrunしてみる   5. おわりに 6. 参考  記事リンク 前回の記事：Docker Desktop環境構築
+次回の記事：（TBD）"/>
+
+    <meta property="og:title" content="Blazor用Dockerfileの作成と実行" />
+<meta property="og:description" content="目次  目次 記事リンク 1. 概要 2. Dockerfileの作成  2.1. 空のDockerfileを作成する 2.2. .NET 6 SDK環境用Dockerfile記載   3. 実行確認  3.1. docker build実施 3.2. docker imageの実行 3.3. dotnet versionの確認   4. Blazor作業実施  4.1. Blazor WebAssemblyプロジェクトの新規作成 4.2. Blazor WebAssemblyプロジェクト設定の注意点  4.2.1. launchSetting.json内の「&ldquo;launchBrowser&rdquo;: true」は削除する 4.2.2. 使用するポートを統一する  4.2.2.1. launchSetting.json内の「applicationUrl」を削除しておく 4.2.2.2. dockerfile記載の「ASPNETCORE_URLS=」値とdocker run時に-pオプションで指定するポートを一致させておく     4.3. Blazor WebAssemblyをrunしてみる   5. おわりに 6. 参考  記事リンク 前回の記事：Docker Desktop環境構築
+次回の記事：（TBD）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mtside01.github.io/kennyblog/posts/2022-04-20_blazor%E7%94%A8dockerfile%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E5%AE%9F%E8%A1%8C/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-20T00:00:00+00:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://mtside01.github.io/kennyblog/"><img class="app-header-avatar" src="/kennyblog/images/neko.png" alt="けにー" /></a>
+      <h1>けにぶろぐ</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/kennyblog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/about/">About</a>
+      </nav>
+      <p>備忘録や勉強のアウトプットの場</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Blazor用Dockerfileの作成と実行</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 20, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/docker/">Docker</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/blazor/">Blazor</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="目次">目次</h1>
+<ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#%E8%A8%98%E4%BA%8B%E3%83%AA%E3%83%B3%E3%82%AF">記事リンク</a></li>
+<li><a href="#1-%E6%A6%82%E8%A6%81">1. 概要</a></li>
+<li><a href="#2-dockerfile%E3%81%AE%E4%BD%9C%E6%88%90">2. Dockerfileの作成</a>
+<ul>
+<li><a href="#21-%E7%A9%BA%E3%81%AEdockerfile%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B">2.1. 空のDockerfileを作成する</a></li>
+<li><a href="#22-net-6-sdk%E7%92%B0%E5%A2%83%E7%94%A8dockerfile%E8%A8%98%E8%BC%89">2.2. .NET 6 SDK環境用Dockerfile記載</a></li>
+</ul>
+</li>
+<li><a href="#3-%E5%AE%9F%E8%A1%8C%E7%A2%BA%E8%AA%8D">3. 実行確認</a>
+<ul>
+<li><a href="#31-docker-build%E5%AE%9F%E6%96%BD">3.1. docker build実施</a></li>
+<li><a href="#32-docker-image%E3%81%AE%E5%AE%9F%E8%A1%8C">3.2. docker imageの実行</a></li>
+<li><a href="#33-dotnet-version%E3%81%AE%E7%A2%BA%E8%AA%8D">3.3. dotnet versionの確認</a></li>
+</ul>
+</li>
+<li><a href="#4-blazor%E4%BD%9C%E6%A5%AD%E5%AE%9F%E6%96%BD">4. Blazor作業実施</a>
+<ul>
+<li><a href="#41-blazor-webassembly%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E6%96%B0%E8%A6%8F%E4%BD%9C%E6%88%90">4.1. Blazor WebAssemblyプロジェクトの新規作成</a></li>
+<li><a href="#42-blazor-webassembly%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E8%A8%AD%E5%AE%9A%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9">4.2. Blazor WebAssemblyプロジェクト設定の注意点</a>
+<ul>
+<li><a href="#421-launchsettingjson%E5%86%85%E3%81%AElaunchbrowser-true%E3%81%AF%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B">4.2.1. launchSetting.json内の「&ldquo;launchBrowser&rdquo;: true」は削除する</a></li>
+<li><a href="#422-%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B%E3%83%9D%E3%83%BC%E3%83%88%E3%82%92%E7%B5%B1%E4%B8%80%E3%81%99%E3%82%8B">4.2.2. 使用するポートを統一する</a>
+<ul>
+<li><a href="#4221-launchsettingjson%E5%86%85%E3%81%AEapplicationurl%E3%82%92%E5%89%8A%E9%99%A4%E3%81%97%E3%81%A6%E3%81%8A%E3%81%8F">4.2.2.1. launchSetting.json内の「applicationUrl」を削除しておく</a></li>
+<li><a href="#4222-dockerfile%E8%A8%98%E8%BC%89%E3%81%AEaspnetcore_urls%E5%80%A4%E3%81%A8docker-run%E6%99%82%E3%81%AB-p%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%A7%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E3%83%9D%E3%83%BC%E3%83%88%E3%82%92%E4%B8%80%E8%87%B4%E3%81%95%E3%81%9B%E3%81%A6%E3%81%8A%E3%81%8F">4.2.2.2. dockerfile記載の「ASPNETCORE_URLS=」値とdocker run時に<code>-p</code>オプションで指定するポートを一致させておく</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#43-blazor-webassembly%E3%82%92run%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B">4.3. Blazor WebAssemblyをrunしてみる</a></li>
+</ul>
+</li>
+<li><a href="#5-%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB">5. おわりに</a></li>
+<li><a href="#6-%E5%8F%82%E8%80%83">6. 参考</a></li>
+</ul>
+<h1 id="記事リンク">記事リンク</h1>
+<p>前回の記事：<a href="https://mtside01.github.io/kennyblog/posts/2022-04-03_docker-desktop%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/">Docker Desktop環境構築</a></p>
+<p>次回の記事：（TBD）</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="1-概要">1. 概要</h1>
+<p>前回の記事（<a href="https://mtside01.github.io/kennyblog/posts/2022-04-03_docker-desktop%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/">Docker Desktop環境構築</a>）に引き続き、Docker上でBlazor開発を行うために必要なDockerfileの作成、および実行確認をしていきます。</p>
+<p>これさえ準備出来れば、どのPCでも同様のBlazor開発環境を準備/作業をすることが可能となります。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="2-dockerfileの作成">2. Dockerfileの作成</h1>
+<h2 id="21-空のdockerfileを作成する">2.1. 空のDockerfileを作成する</h2>
+<p>PCのローカル上、適当なフォルダに「dockerfile」という名称でファイルを用意しておきます。
+この時点では中身は空のままでOKです。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/newFile.png" alt="新規Dockerfile"></p>
+<h2 id="22-net-6-sdk環境用dockerfile記載">2.2. .NET 6 SDK環境用Dockerfile記載</h2>
+<p>Blazorは.NET 6 SDK環境さえ準備出来れば動作可能なので、.NET SDK環境構築用のDockerfile記載を行います。</p>
+<p>※ 2022/04/20現在の情報です。最新の環境構築については以下を参照して下さい。</p>
+<p><a href="https://dotnet.microsoft.com/ja-jp/learn/aspnet/blazor-tutorial/install">https://dotnet.microsoft.com/ja-jp/learn/aspnet/blazor-tutorial/install</a></p>
+<p>公式で用意されている.NETのDockerイメージは以下から確認出来ます。</p>
+<p><a href="https://hub.docker.com/_/microsoft-dotnet-sdk">https://hub.docker.com/_/microsoft-dotnet-sdk</a></p>
+<p>今回は、Ubuntu 20.04向けにDockerfileを作成したいので、上記ページ内「Linux amd64 Tags」欄から「6.0.202-focal-amd64, 6.0-focal-amd64, 6.0.202-focal, 6.0-focal」を選択してDockerfileリンクを開きます。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/.NET6Ubuntu20.04.png" alt=".NET6 Ubuntu20.04"></p>
+<p>Githubページが開くので、そこに記載してある内容をすべて先程用意した空のDockerfile内にコピーアンドペーストします。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/Dockerfile.png" alt=".NET6 Dockerfile"></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="3-実行確認">3. 実行確認</h1>
+<h2 id="31-docker-build実施">3.1. docker build実施</h2>
+<p>先程までで作成したdockerfileがあるディレクトリで<code>docker build</code>を実行します。</p>
+<pre tabindex="0"><code>docker build -t mtside01/blazor .
+</code></pre><p>※ 後の作業として、作成したdocker imageをdocker hubにアップロードしたいので、-t(タグ)オプションで「docker hubアカウント名/作りたいリポジトリ名」としてタグ付けをしています。特にdocker hubへのアップロード予定が無ければタグ指定は不要です。</p>
+<p>※ なお、docker hubへアップロードしておくことで、次からはdockerfileを各PCにコピーせずとも、リポジトリ名を指定して実行するだけで同様の開発環境を用意することが出来ます。方法は別途記事にします。</p>
+<p>※ コマンド最後の「.」により、生成するdocker imageの置かれるディレクトリを指定しています。「.」は現在作業しているディレクトリを意味します。</p>
+<p>しばらくすると、buildが完了します。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/dockerbuild.png" alt="docker build"></p>
+<p>Docker imageが生成されていることを確認します。<code>docker images</code>で現在生成されているdocker image一覧を確認出来ます。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/dockerimages.png" alt="docker images"></p>
+<h2 id="32-docker-imageの実行">3.2. docker imageの実行</h2>
+<p>上記までで作成したdocker imageを実行します。</p>
+<pre tabindex="0"><code>docker run -it --rm --name blazortest -p 8000:80 -v C:\blazor\dockerEnv\:/app -w /app mtside01/blazor
+</code></pre><p>上記コマンドにおける各オプションはそれぞれ以下を意味します。コマンド最後の「mtside01/blazor」は実行するdocker imageを指定しています。</p>
+<ul>
+<li><code>-it</code>: docker runされたコンテナ内でbashシェルを表示</li>
+<li><code>-rm</code>: コンテナ終了時、自動的に削除</li>
+<li><code>--name</code>: コンテナの名前指定</li>
+<li><code>-p</code>: ポートの指定</li>
+<li><code>-v</code>: 「ホスト側ソース:コンテナ側送信先」の指定</li>
+<li><code>-w</code>: コンテナ内の作業ディレクトリ指定</li>
+</ul>
+<p><code>docker ps</code>コマンドで今立ち上がっているコンテナを確認しておきます。</p>
+<p>※ 先程の<code>-it</code>オプションにより、ターミナル上ではコンテナ内のbashシェルが表示されている状態なので、別途ターミナルを開いて実行します。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/dockerps.png" alt="docker ps"></p>
+<h2 id="33-dotnet-versionの確認">3.3. dotnet versionの確認</h2>
+<p>立ち上がったbashシェル上で<code>dotnet --version</code>を実行します。</p>
+<p>正しくversion記載が表示されれば成功です。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/dotnetversion.png" alt="dotnet version"></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="4-blazor作業実施">4. Blazor作業実施</h1>
+<h2 id="41-blazor-webassemblyプロジェクトの新規作成">4.1. Blazor WebAssemblyプロジェクトの新規作成</h2>
+<p>試しに上記で実行中のコンテナ内で、Blazor WebAssemblyプロジェクトを作成してみます。</p>
+<pre tabindex="0"><code>dotnet new blazorwasm -o .
+</code></pre><p>正しく実行されれば、実行ディレクトリにプロジェクトファイルが生成されます。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/dotnetnew.png" alt="dotnet new"></p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/blazorwasm.png" alt="blazorwasm"></p>
+<h2 id="42-blazor-webassemblyプロジェクト設定の注意点">4.2. Blazor WebAssemblyプロジェクト設定の注意点</h2>
+<h3 id="421-launchsettingjson内のlaunchbrowser-trueは削除する">4.2.1. launchSetting.json内の「&ldquo;launchBrowser&rdquo;: true」は削除する</h3>
+<p>Dockerコンテナ内ではブラウザを生成出来ないため、launchSetting.json内の「&ldquo;launchBrowser&rdquo;: true」記載は削除しておく必要があります。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/launchBrouser.png" alt="launch Brouser"></p>
+<h3 id="422-使用するポートを統一する">4.2.2. 使用するポートを統一する</h3>
+<h4 id="4221-launchsettingjson内のapplicationurlを削除しておく">4.2.2.1. launchSetting.json内の「applicationUrl」を削除しておく</h4>
+<p>これを削除することで、コンテナ側で指定したポートに従ってローカルホストが立ち上がるようになります。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/applicationUrl.png" alt="applicationUrl"></p>
+<h4 id="4222-dockerfile記載のaspnetcore_urls値とdocker-run時に-pオプションで指定するポートを一致させておく">4.2.2.2. dockerfile記載の「ASPNETCORE_URLS=」値とdocker run時に<code>-p</code>オプションで指定するポートを一致させておく</h4>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/aspnetcore_urls.png" alt="aspnetcore_urls"></p>
+<p>※ 今回は<code>docker run</code>時に8000:80を指定しています。</p>
+<p>※ なお、現在のオープンポート状態は<code>docker ps</code>で確認可能です。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/dockerps.png" alt="docker ps"></p>
+<h2 id="43-blazor-webassemblyをrunしてみる">4.3. Blazor WebAssemblyをrunしてみる</h2>
+<p><code>dotnet run</code>で実行します。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/dotnetrun.png" alt="dotnet run"></p>
+<p>オープンしているローカルホストにアクセスし、初期作成App画面が表示されれば成功です。</p>
+<p>※ 今回の場合「http://localhost:8000/」にアクセスします。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/localhost.png" alt="localhost"></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="5-おわりに">5. おわりに</h1>
+<p>ここまでの作業でDockerを使用したBlazorの開発環境が整いました。</p>
+<p>今回作成したDockerfileを用いて同様の手順を実施すれば、全く同じ開発環境を用意することが可能なはずです。</p>
+<p>次回は、開発環境構築を更に簡単にするために、今回作成したDocker imageをDocker Hubへアップロードし、Docker hubからコンテナを起動する方法について記載するつもりです。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="6-参考">6. 参考</h1>
+<ul>
+<li><a href="http://docs.docker.jp/v19.03/engine/reference/commandline/run.html">http://docs.docker.jp/v19.03/engine/reference/commandline/run.html</a></li>
+<li><a href="https://qiita.com/Gin/items/dde3c3085f13f0a45c40">https://qiita.com/Gin/items/dde3c3085f13f0a45c40</a></li>
+<li><a href="https://www.youtube.com/watch?v=jGyFKH5y6LA">https://www.youtube.com/watch?v=jGyFKH5y6LA</a></li>
+<li><a href="https://qiita.com/tifa2chan/items/e9aa408244687a63a0ae">https://qiita.com/tifa2chan/items/e9aa408244687a63a0ae</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

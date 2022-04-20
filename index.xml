@@ -6,7 +6,17 @@
     <description>Recent content on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 17 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blazor用Dockerfileの作成と実行</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-04-20_blazor%E7%94%A8dockerfile%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E5%AE%9F%E8%A1%8C/</link>
+      <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-04-20_blazor%E7%94%A8dockerfile%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E5%AE%9F%E8%A1%8C/</guid>
+      <description>目次  目次 記事リンク 1. 概要 2. Dockerfileの作成  2.1. 空のDockerfileを作成する 2.2. .NET 6 SDK環境用Dockerfile記載   3. 実行確認  3.1. docker build実施 3.2. docker imageの実行 3.3. dotnet versionの確認   4. Blazor作業実施  4.1. Blazor WebAssemblyプロジェクトの新規作成 4.2. Blazor WebAssemblyプロジェクト設定の注意点  4.2.1. launchSetting.json内の「&amp;ldquo;launchBrowser&amp;rdquo;: true」は削除する 4.2.2. 使用するポートを統一する  4.2.2.1. launchSetting.json内の「applicationUrl」を削除しておく 4.2.2.2. dockerfile記載の「ASPNETCORE_URLS=」値とdocker run時に-pオプションで指定するポートを一致させておく     4.3. Blazor WebAssemblyをrunしてみる   5. おわりに 6. 参考  記事リンク 前回の記事：Docker Desktop環境構築
+次回の記事：（TBD）</description>
+    </item>
+    
     <item>
       <title>Among Us Map App</title>
       <link>https://mtside01.github.io/kennyblog/posts/2022-04-17_among-us-map-app/</link>
