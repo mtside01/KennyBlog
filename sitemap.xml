@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://mtside01.github.io/kennyblog/tags/bootstrap/</loc>
+    <lastmod>2022-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/tags/html/</loc>
+    <lastmod>2022-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/tags/javascript/</loc>
+    <lastmod>2022-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/posts/2022-05-01_javascript%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9/</loc>
+    <lastmod>2022-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/posts/</loc>
+    <lastmod>2022-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/tags/</loc>
+    <lastmod>2022-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/</loc>
+    <lastmod>2022-05-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/blazor/</loc>
     <lastmod>2022-04-20T00:00:00+00:00</lastmod>
   </url><url>
@@ -11,28 +32,10 @@
     <loc>https://mtside01.github.io/kennyblog/tags/docker/</loc>
     <lastmod>2022-04-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mtside01.github.io/kennyblog/posts/</loc>
-    <lastmod>2022-04-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mtside01.github.io/kennyblog/tags/</loc>
-    <lastmod>2022-04-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mtside01.github.io/kennyblog/</loc>
-    <lastmod>2022-04-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mtside01.github.io/kennyblog/posts/2022-04-17_among-us-map-app/</loc>
     <lastmod>2022-04-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mtside01.github.io/kennyblog/tags/bootstrap/</loc>
-    <lastmod>2022-04-17T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/css/</loc>
-    <lastmod>2022-04-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mtside01.github.io/kennyblog/tags/html/</loc>
-    <lastmod>2022-04-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mtside01.github.io/kennyblog/tags/javascript/</loc>
     <lastmod>2022-04-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/vue.js/</loc>

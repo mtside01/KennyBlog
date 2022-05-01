@@ -6,7 +6,25 @@
     <description>Recent content in Posts on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 20 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScriptを使ったローカルファイルアクセス</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-05-01_javascript%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9/</link>
+      <pubDate>Sun, 01 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-05-01_javascript%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9/</guid>
+      <description>1. 概要 今回は、JavaScriptを使ったローカルファイルの読み出し/書き込み方法を調べてみました。
+2. 作ったもの 2.1. デモアプリ https://mtside01.github.io/FileAccess_sample/
+検証のために作ったデモアプリを上記で公開しています。
+機能としては、以下を試せます。
+ ローカルファイルの読み込み 読み込んだファイルから情報取得 入力した文字列をテキストファイルとして書き出し  2.2. ソースコード https://github.com/mtside01/FileAccess_sample
+　3. ポイント（備忘録） 3.1. ローカルファイル読み込み 3.1.1. 読み込み用要素の追加 HTML inputタグを使い、typeをfile指定することでローカルファイルを読み込むことが出来ます。
+今回はシンプルに以下のように記載しています。
+&amp;lt;input type=&amp;#34;file&amp;#34; id=&amp;#34;uploadFile&amp;#34;&amp;gt; 3.1.2. ファイル読み込みをトリガーにファイル情報取得を行う fileInputという変数を用意し、上記id=&amp;quot;uploadFile&amp;quot;を参照して要素取得を行います。
+また、ファイル読み込み時をトリガーにJavaScript関数実行を行いたいため、onchangeイベントを使用しています。
+let fileInput = document.getElementById(&amp;#34;uploadFile&amp;#34;); let fileReader = new FileReader(); let fileOutput = document.getElementById(&amp;#34;downloadButton&amp;#34;);  fileInput.onchange = () =&amp;gt; {  let file = fileInput.files[0];  let pathToFile = document.getElementById(&amp;#34;pathToFile&amp;#34;);  let fileName = document.getElementById(&amp;#34;fileName&amp;#34;);  let fileSize = document.</description>
+    </item>
+    
     <item>
       <title>Blazor用Dockerfileの作成と実行</title>
       <link>https://mtside01.github.io/kennyblog/posts/2022-04-20_blazor%E7%94%A8dockerfile%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E5%AE%9F%E8%A1%8C/</link>

@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ja-jp">
+  <head>
+    <title>JavaScriptを使ったローカルファイルアクセス // けにぶろぐ</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.95.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="けにー" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://mtside01.github.io/kennyblog/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScriptを使ったローカルファイルアクセス"/>
+<meta name="twitter:description" content="1. 概要 今回は、JavaScriptを使ったローカルファイルの読み出し/書き込み方法を調べてみました。
+2. 作ったもの 2.1. デモアプリ https://mtside01.github.io/FileAccess_sample/
+検証のために作ったデモアプリを上記で公開しています。
+機能としては、以下を試せます。
+ ローカルファイルの読み込み 読み込んだファイルから情報取得 入力した文字列をテキストファイルとして書き出し  2.2. ソースコード https://github.com/mtside01/FileAccess_sample
+　3. ポイント（備忘録） 3.1. ローカルファイル読み込み 3.1.1. 読み込み用要素の追加 HTML inputタグを使い、typeをfile指定することでローカルファイルを読み込むことが出来ます。
+今回はシンプルに以下のように記載しています。
+&lt;input type=&#34;file&#34; id=&#34;uploadFile&#34;&gt; 3.1.2. ファイル読み込みをトリガーにファイル情報取得を行う fileInputという変数を用意し、上記id=&quot;uploadFile&quot;を参照して要素取得を行います。
+また、ファイル読み込み時をトリガーにJavaScript関数実行を行いたいため、onchangeイベントを使用しています。
+let fileInput = document.getElementById(&#34;uploadFile&#34;); let fileReader = new FileReader(); let fileOutput = document.getElementById(&#34;downloadButton&#34;);  fileInput.onchange = () =&gt; {  let file = fileInput.files[0];  let pathToFile = document.getElementById(&#34;pathToFile&#34;);  let fileName = document.getElementById(&#34;fileName&#34;);  let fileSize = document."/>
+
+    <meta property="og:title" content="JavaScriptを使ったローカルファイルアクセス" />
+<meta property="og:description" content="1. 概要 今回は、JavaScriptを使ったローカルファイルの読み出し/書き込み方法を調べてみました。
+2. 作ったもの 2.1. デモアプリ https://mtside01.github.io/FileAccess_sample/
+検証のために作ったデモアプリを上記で公開しています。
+機能としては、以下を試せます。
+ ローカルファイルの読み込み 読み込んだファイルから情報取得 入力した文字列をテキストファイルとして書き出し  2.2. ソースコード https://github.com/mtside01/FileAccess_sample
+　3. ポイント（備忘録） 3.1. ローカルファイル読み込み 3.1.1. 読み込み用要素の追加 HTML inputタグを使い、typeをfile指定することでローカルファイルを読み込むことが出来ます。
+今回はシンプルに以下のように記載しています。
+&lt;input type=&#34;file&#34; id=&#34;uploadFile&#34;&gt; 3.1.2. ファイル読み込みをトリガーにファイル情報取得を行う fileInputという変数を用意し、上記id=&quot;uploadFile&quot;を参照して要素取得を行います。
+また、ファイル読み込み時をトリガーにJavaScript関数実行を行いたいため、onchangeイベントを使用しています。
+let fileInput = document.getElementById(&#34;uploadFile&#34;); let fileReader = new FileReader(); let fileOutput = document.getElementById(&#34;downloadButton&#34;);  fileInput.onchange = () =&gt; {  let file = fileInput.files[0];  let pathToFile = document.getElementById(&#34;pathToFile&#34;);  let fileName = document.getElementById(&#34;fileName&#34;);  let fileSize = document." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mtside01.github.io/kennyblog/posts/2022-05-01_javascript%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-01T00:00:00+00:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://mtside01.github.io/kennyblog/"><img class="app-header-avatar" src="/kennyblog/images/neko.png" alt="けにー" /></a>
+      <h1>けにぶろぐ</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/kennyblog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/about/">About</a>
+      </nav>
+      <p>備忘録や勉強のアウトプットの場</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">JavaScriptを使ったローカルファイルアクセス</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 1, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/html/">HTML</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/javascript/">JavaScript</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/bootstrap/">Bootstrap</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="1-概要">1. 概要</h1>
+<p>今回は、JavaScriptを使ったローカルファイルの読み出し/書き込み方法を調べてみました。</p>
+<h1 id="2-作ったもの">2. 作ったもの</h1>
+<h2 id="21-デモアプリ">2.1. デモアプリ</h2>
+<p><a href="https://mtside01.github.io/FileAccess_sample/">https://mtside01.github.io/FileAccess_sample/</a></p>
+<p>検証のために作ったデモアプリを上記で公開しています。</p>
+<p>機能としては、以下を試せます。</p>
+<ul>
+<li>ローカルファイルの読み込み</li>
+<li>読み込んだファイルから情報取得</li>
+<li>入力した文字列をテキストファイルとして書き出し</li>
+</ul>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-01/demo.png" alt="デモアプリ"></p>
+<h2 id="22-ソースコード">2.2. ソースコード</h2>
+<p><a href="https://github.com/mtside01/FileAccess_sample">https://github.com/mtside01/FileAccess_sample</a></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="3-ポイント備忘録">3. ポイント（備忘録）</h1>
+<h2 id="31-ローカルファイル読み込み">3.1. ローカルファイル読み込み</h2>
+<h3 id="311-読み込み用要素の追加">3.1.1. 読み込み用要素の追加</h3>
+<p>HTML inputタグを使い、typeをfile指定することでローカルファイルを読み込むことが出来ます。</p>
+<p>今回はシンプルに以下のように記載しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;file&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;uploadFile&#34;</span>&gt;
+</span></span></code></pre></div><h3 id="312-ファイル読み込みをトリガーにファイル情報取得を行う">3.1.2. ファイル読み込みをトリガーにファイル情報取得を行う</h3>
+<p>fileInputという変数を用意し、上記<code>id=&quot;uploadFile&quot;</code>を参照して要素取得を行います。</p>
+<p>また、ファイル読み込み時をトリガーにJavaScript関数実行を行いたいため、<code>onchange</code>イベントを使用しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fileInput</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;uploadFile&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fileReader</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">FileReader</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fileOutput</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;downloadButton&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fileInput</span>.<span style="color:#a6e22e">onchange</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">file</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fileInput</span>.<span style="color:#a6e22e">files</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">pathToFile</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;pathToFile&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fileName</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;fileName&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fileSize</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;fileSize&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fileType</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;fileType&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lastModified</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;lastModified&#34;</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pathToFile</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">uploadFile</span>.<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fileName</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">file</span>.<span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fileSize</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">file</span>.<span style="color:#a6e22e">size</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fileType</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">file</span>.<span style="color:#a6e22e">type</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">lastModified</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">file</span>.<span style="color:#a6e22e">lastModifiedDate</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fileReader</span>.<span style="color:#a6e22e">readAsText</span>(<span style="color:#a6e22e">file</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>関数内での処理としては、各画面要素にファイル情報を書き込んでいるだけです。</p>
+<p>なおfileオブジェクトで取得できるプロパティとしては以下が用意されています。今回はそれらすべてを取得/画面表示しています。</p>
+<ul>
+<li>lastModifiedDate: ファイルの最終更新日</li>
+<li>name: ファイルの名前</li>
+<li>type: ファイルのMIMEタイプ</li>
+<li>size: ファイルのサイズ</li>
+</ul>
+<h3 id="313-読み込んだファイルの内容を取得する">3.1.3. 読み込んだファイルの内容を取得する</h3>
+<p>fileオブジェクトで取得可能なプロパティの利用だけでは、読み込んだテキストファイルの内容取得までは行えません。</p>
+<p>そこで今回はFileReaderオブジェクトを使用して内容取得を実施しました。</p>
+<p>まず、fileReaderという変数を用意し、FileReaderを生成します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fileReader</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">FileReader</span>();
+</span></span></code></pre></div><p>続いて、ファイル読み込み時の処理内にて、readAsTextメソッドを使用、引数として読み込んだファイルを渡します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#a6e22e">fileReader</span>.<span style="color:#a6e22e">readAsText</span>(<span style="color:#a6e22e">file</span>);
+</span></span></code></pre></div><p>最後に、ファイル読み込みの完了をトリガーとして、読み込み内容を画面表示したいのでfileReader.onloadの処理を追加します。</p>
+<p>その中でresultプロパティを参照することで、ファイルの内容表示を実現しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#a6e22e">fileReader</span>.<span style="color:#a6e22e">onload</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fileContent</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;fileContent&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fileContent</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fileReader</span>.<span style="color:#a6e22e">result</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="32-ファイル出力">3.2. ファイル出力</h2>
+<h3 id="321-filesaverjsの導入">3.2.1. FileSaver.jsの導入</h3>
+<p><a href="https://github.com/eligrey/FileSaver.js">FileServer.js</a>というものを使用することで、サクッとファイル出力が可能みたいです。</p>
+<p>CDNとして導入します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js&#34;</span><span style="color:#f92672">&gt;&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+</span></span></code></pre></div><h3 id="322-記載内容をテキストファイルとして出力する">3.2.2. 記載内容をテキストファイルとして出力する</h3>
+<p>ボタンクリック時にファイル出力したかったため、ボタン要素に紐づけているid
+のonclickをトリガーに出力処理を実行します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fileOutput</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;downloadButton&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fileOutput</span>.<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">…</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>出力処理内にてinput text要素のvalueプロパティを参照します。これにより、テキストボックス内の記載を取得します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">textBox</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;message&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">textBox</span>.<span style="color:#a6e22e">value</span>;
+</span></span></code></pre></div><p>上記で取得したテキストボックス記載をBlobオブジェクトに読み込ませます。
+後述するFileServer.jsのsaveAsメソッドを使うためには、blobオブジェクトに変換しておく必要があります。</p>
+<p>またこのとき、ファイルタイプをtext、charsetをutf-8として指定しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">blob</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Blob</span>([<span style="color:#a6e22e">message</span>], {<span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;text/plain;charset=utf-8&#34;</span>});
+</span></span></code></pre></div><p>FileServer.jsのsaveAsメソッドを使ってファイル出力します。</p>
+<p>使い方は以下のようにblobオブジェクトと出力ファイル名を引数としてsaveAsメソッドを呼び出すだけです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#a6e22e">saveAs</span>(<span style="color:#a6e22e">blob</span>, <span style="color:#e6db74">&#34;test.txt&#34;</span>);
+</span></span></code></pre></div><p>　
+<!-- raw HTML omitted --></p>
+<h1 id="4-感想">4. 感想</h1>
+<ul>
+<li>思っていたより少ない処理で実現出来ることがわかった</li>
+<li>SPAのデータ処理を実装する上で、ファイル処理は必要となってくると思う。今回の経験を活かしていきたい</li>
+<li>次のステップとして、データをWeb API経由でサーバとやり取りする方法も学びたい</li>
+</ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="5-参考">5. 参考</h1>
+<ul>
+<li><a href="http://www.webcreativepark.net/javascript/file/file-object/">http://www.webcreativepark.net/javascript/file/file-object/</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/FileReader">https://developer.mozilla.org/ja/docs/Web/API/FileReader</a></li>
+<li><a href="https://techacademy.jp/magazine/38104">https://techacademy.jp/magazine/38104</a></li>
+<li><a href="https://yizm.work/sample_code/javascript/prev_filesaver/">https://yizm.work/sample_code/javascript/prev_filesaver/</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/Blob">https://developer.mozilla.org/ja/docs/Web/API/Blob</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
