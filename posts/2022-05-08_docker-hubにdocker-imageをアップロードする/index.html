@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ja-jp">
+  <head>
+    <title>Docker HubにDocker imageをアップロードする // けにぶろぐ</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.95.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="けにー" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://mtside01.github.io/kennyblog/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker HubにDocker imageをアップロードする"/>
+<meta name="twitter:description" content="目次  目次 記事リンク 1. 概要 2. 前準備  2.1. Docker Hubに登録する 2.2. Docker imageの作成   3. ローカルからDocker imageをpushする  3.1. Docker Hubにログイン 3.2. Docker HubにDocker imageをpushする 3.3. Docker Hubを確認する   4. Docker Hub上のDocker imageからコンテナを起動する  4.1. コンテナの起動 4.2. 現在起動しているコンテナの確認   5. おわりに 6. 参考  　記事リンク Step1: Docker Desktop環境構築
+Step2: Blazor用Dockerfileの作成と実行
+Step3: 今回の記事！
+　1. 概要 前回の記事（Blazor用Dockerfileの作成と実行）では、Blazor開発環境用のDocker imageの作成と実行確認までを完了しました。
+今回は、前回作成したDocker imageをDocker Hubリポジトリへアップロードしておくことで、どのPC環境からでもDocker hub経由でコンテナを起動する方法について記載します。
+これにより、別PC等での新規環境構築時、1コマンドで環境構築が可能となります。
+　2. 前準備 2."/>
+
+    <meta property="og:title" content="Docker HubにDocker imageをアップロードする" />
+<meta property="og:description" content="目次  目次 記事リンク 1. 概要 2. 前準備  2.1. Docker Hubに登録する 2.2. Docker imageの作成   3. ローカルからDocker imageをpushする  3.1. Docker Hubにログイン 3.2. Docker HubにDocker imageをpushする 3.3. Docker Hubを確認する   4. Docker Hub上のDocker imageからコンテナを起動する  4.1. コンテナの起動 4.2. 現在起動しているコンテナの確認   5. おわりに 6. 参考  　記事リンク Step1: Docker Desktop環境構築
+Step2: Blazor用Dockerfileの作成と実行
+Step3: 今回の記事！
+　1. 概要 前回の記事（Blazor用Dockerfileの作成と実行）では、Blazor開発環境用のDocker imageの作成と実行確認までを完了しました。
+今回は、前回作成したDocker imageをDocker Hubリポジトリへアップロードしておくことで、どのPC環境からでもDocker hub経由でコンテナを起動する方法について記載します。
+これにより、別PC等での新規環境構築時、1コマンドで環境構築が可能となります。
+　2. 前準備 2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mtside01.github.io/kennyblog/posts/2022-05-08_docker-hub%E3%81%ABdocker-image%E3%82%92%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-08T00:00:00+00:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://mtside01.github.io/kennyblog/"><img class="app-header-avatar" src="/kennyblog/images/neko.png" alt="けにー" /></a>
+      <h1>けにぶろぐ</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/kennyblog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/about/">About</a>
+      </nav>
+      <p>備忘録や勉強のアウトプットの場</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Docker HubにDocker imageをアップロードする</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 8, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/docker/">Docker</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/blazor/">Blazor</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="目次">目次</h1>
+<ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#%E8%A8%98%E4%BA%8B%E3%83%AA%E3%83%B3%E3%82%AF">記事リンク</a></li>
+<li><a href="#1-%E6%A6%82%E8%A6%81">1. 概要</a></li>
+<li><a href="#2-%E5%89%8D%E6%BA%96%E5%82%99">2. 前準備</a>
+<ul>
+<li><a href="#21-docker-hub%E3%81%AB%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B">2.1. Docker Hubに登録する</a></li>
+<li><a href="#22-docker-image%E3%81%AE%E4%BD%9C%E6%88%90">2.2. Docker imageの作成</a></li>
+</ul>
+</li>
+<li><a href="#3-%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%81%8B%E3%82%89docker-image%E3%82%92push%E3%81%99%E3%82%8B">3. ローカルからDocker imageをpushする</a>
+<ul>
+<li><a href="#31-docker-hub%E3%81%AB%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3">3.1. Docker Hubにログイン</a></li>
+<li><a href="#32-docker-hub%E3%81%ABdocker-image%E3%82%92push%E3%81%99%E3%82%8B">3.2. Docker HubにDocker imageをpushする</a></li>
+<li><a href="#33-docker-hub%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">3.3. Docker Hubを確認する</a></li>
+</ul>
+</li>
+<li><a href="#4-docker-hub%E4%B8%8A%E3%81%AEdocker-image%E3%81%8B%E3%82%89%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%82%92%E8%B5%B7%E5%8B%95%E3%81%99%E3%82%8B">4. Docker Hub上のDocker imageからコンテナを起動する</a>
+<ul>
+<li><a href="#41-%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E8%B5%B7%E5%8B%95">4.1. コンテナの起動</a></li>
+<li><a href="#42-%E7%8F%BE%E5%9C%A8%E8%B5%B7%E5%8B%95%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E7%A2%BA%E8%AA%8D">4.2. 現在起動しているコンテナの確認</a></li>
+</ul>
+</li>
+<li><a href="#5-%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB">5. おわりに</a></li>
+<li><a href="#6-%E5%8F%82%E8%80%83">6. 参考</a></li>
+</ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="記事リンク">記事リンク</h1>
+<p>Step1: <a href="https://mtside01.github.io/kennyblog/posts/2022-04-03_docker-desktop%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/">Docker Desktop環境構築</a></p>
+<p>Step2: <a href="https://mtside01.github.io/kennyblog/posts/2022-04-20_blazor%E7%94%A8dockerfile%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E5%AE%9F%E8%A1%8C/">Blazor用Dockerfileの作成と実行</a></p>
+<p>Step3: 今回の記事！</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="1-概要">1. 概要</h1>
+<p>前回の記事（<a href="https://mtside01.github.io/kennyblog/posts/2022-04-20_blazor%E7%94%A8dockerfile%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E5%AE%9F%E8%A1%8C/">Blazor用Dockerfileの作成と実行</a>）では、Blazor開発環境用のDocker imageの作成と実行確認までを完了しました。</p>
+<p>今回は、前回作成したDocker imageをDocker Hubリポジトリへアップロードしておくことで、どのPC環境からでもDocker hub経由でコンテナを起動する方法について記載します。</p>
+<p>これにより、別PC等での新規環境構築時、1コマンドで環境構築が可能となります。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="2-前準備">2. 前準備</h1>
+<h2 id="21-docker-hubに登録する">2.1. Docker Hubに登録する</h2>
+<p>まだアカウントを作っていない場合は、アカウント登録をして下さい。</p>
+<p><a href="https://hub.docker.com/">https://hub.docker.com/</a></p>
+<h2 id="22-docker-imageの作成">2.2. Docker imageの作成</h2>
+<p>前回の記事（<a href="https://mtside01.github.io/kennyblog/posts/2022-04-20_blazor%E7%94%A8dockerfile%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E5%AE%9F%E8%A1%8C/">Blazor用Dockerfileの作成と実行</a>）でも行いましたが、念のため再掲します。</p>
+<p>Docker fileを置いているディレクトリでbuild実行します。</p>
+<pre tabindex="0"><code>docker build -t mtside01/blazor .
+</code></pre><p>※このとき、-t(タグ)オプションで「docker hubアカウント名/作りたいリポジトリ名」としてタグ付けをしておきます。</p>
+<p>※ コマンド最後の「.」により、生成するdocker imageの置かれるディレクトリを指定しています。「.」は現在作業しているディレクトリを意味します。</p>
+<p>しばらくすると、buildが完了します。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/dockerbuild.png" alt="docker build"></p>
+<p>Docker imageが生成されていることを確認します。<code>docker images</code>コマンドで現在生成されているdocker image一覧を確認出来ます。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="3-ローカルからdocker-imageをpushする">3. ローカルからDocker imageをpushする</h1>
+<p>Docker HubにDocker imageをアップロードする方法としては、以下2通りあります。今回は、方法1で手っ取り早くアップロードを完了させます。</p>
+<ol>
+<li>ローカルからDocker imageをpushする</li>
+<li>Github連携</li>
+</ol>
+<h2 id="31-docker-hubにログイン">3.1. Docker Hubにログイン</h2>
+<p><code>docker login</code>コマンドにより、Docker Hubにログインを行います。
+ガイドに従い、CLI上でDocker IDとパスワードを入力します。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-08/dockerlogin.png" alt="docker login"></p>
+<p>ログインに成功すると、上記のように<code>Login Succeeded</code>と表示されます。</p>
+<h2 id="32-docker-hubにdocker-imageをpushする">3.2. Docker HubにDocker imageをpushする</h2>
+<p><code>docker push</code>コマンドでDocker HubにDocker imageをpushします。
+上記<code>Docker images</code>で確認した「REPOSITORY:TAG」の記載により、pushしたいimageファイルを指定します。</p>
+<pre tabindex="0"><code>docker push mtside01/blazor:latest
+</code></pre><p><img src="https://mtside01.github.io/kennyblog/images/2022-05-08/dockerpush.png" alt="docker push"></p>
+<h2 id="33-docker-hubを確認する">3.3. Docker Hubを確認する</h2>
+<p>Docker Hubにアクセスし、リポジトリを確認します。
+成功すると、先程pushしたimage用のリポジトリが追加されているはずです。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-08/dockerhubrepos.png" alt="docker hub repos"></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="4-docker-hub上のdocker-imageからコンテナを起動する">4. Docker Hub上のDocker imageからコンテナを起動する</h1>
+<h2 id="41-コンテナの起動">4.1. コンテナの起動</h2>
+<p>上記までの作業により、目的の環境を構築するためのDocker imageをDocker Hub上にアップロード出来ました。</p>
+<p>以降、別PC等で新規環境構築時を行う際は、以下のように「アカウント名/リポジトリ名」を指定して<code>docker run</code>コマンドを実行するだけでコンテナを起動することが出来ます。</p>
+<pre tabindex="0"><code>docker run -it --rm --name blazortest -p 8000:80 -v C:\blazor\dockerEnv\:/app -w /app mtside01/blazor
+</code></pre><p>※ 上記コマンドにおける各オプションはそれぞれ以下を意味します。コマンド最後の「mtside01/blazor」は実行するdocker imageを指定しています。</p>
+<ul>
+<li><code>-it</code>: docker runされたコンテナ内でbashシェルを表示</li>
+<li><code>-rm</code>: コンテナ終了時、自動的に削除</li>
+<li><code>--name</code>: コンテナの名前指定</li>
+<li><code>-p</code>: ポートの指定</li>
+<li><code>-v</code>: 「ホスト側ソース:コンテナ側送信先」の指定</li>
+<li><code>-w</code>: コンテナ内の作業ディレクトリ指定</li>
+</ul>
+<p>Docker Hubからimageを自動的にpullした後に、コンテナが起動されます。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-08/dockerrun.png" alt="docker hub repos"></p>
+<h2 id="42-現在起動しているコンテナの確認">4.2. 現在起動しているコンテナの確認</h2>
+<p>念のため、<code>docker ps</code>コマンドで現在立ち上がっているコンテナを確認しておきます。</p>
+<p>※ 先程の<code>-it</code>オプションにより、ターミナル上ではコンテナ内のbashシェルが表示されている状態なので、別途ターミナルを開いて実行します。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-04-20/dockerps.png" alt="docker ps"></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="5-おわりに">5. おわりに</h1>
+<p>今回まで3つの記事に渡り、Blazor開発環境構築を容易にするためのDocker利用方法（Docker Desktop環境、Docker file作成、Docker Hub利用）について記載しました。</p>
+<p>Blazor以外にも、今回の手順を参考様々な開発環境に応用できるはずです。</p>
+<p>この記事により、少しでも環境構築の煩わしさから開放されれば幸いです。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="6-参考">6. 参考</h1>
+<ul>
+<li><a href="https://qiita.com/kon_yu/items/7c40f4dfbd1cce006ce7">https://qiita.com/kon_yu/items/7c40f4dfbd1cce006ce7</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

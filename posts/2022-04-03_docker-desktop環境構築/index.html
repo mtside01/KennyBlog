@@ -13,34 +13,28 @@
     
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker Desktop環境構築"/>
-<meta name="twitter:description" content="目次  目次 1. 概要 2. 実行環境 3. 環境構築  3.1. WSL2を有効化する 3.2. Docker Desktopのインストール   4. 動作確認  4.1. Docker Desktop 4.2. Linux（Ubuntu）上でDocker環境の確認 4.3. Docker imageの実行   5. おわりに  　1. 概要 PCが変わる度に１から環境構築や、環境差異に応じたトラブルシュートをするのが面倒だったのでDockerを導入してみます。
+<meta name="twitter:description" content="目次  目次 記事リンク 1. 概要 2. 実行環境 3. 環境構築  3.1. WSL2を有効化する 3.2. Docker Desktopのインストール   4. 動作確認  4.1. Docker Desktop 4.2. Linux（Ubuntu）上でDocker環境の確認 4.3. Docker imageの実行   5. おわりに  　記事リンク Step1: 今回の記事！
+Step2: Blazor用Dockerfileの作成と実行
+Step3: Docker HubにDocker imageをアップロードする
+　1. 概要 PCが変わる度に１から環境構築や、環境差異に応じたトラブルシュートをするのが面倒だったのでDockerを導入してみます。
 とりあえずは、直近で必要だったDocker Desktopの導入～Blazor WebAssembly実行環境構築までの手順を備忘録として記載するつもりです。
 この記事ではまず、Docker Desktopの導入/実行確認までを行います。
 　2. 実行環境 Windows 10 version 21H1 (OSビルド19043.1469)
 　3. 環境構築 基本的には以下公式手順に従って実行していきます。
 https://docs.docker.com/desktop/windows/install/
-3.1. WSL2を有効化する WSL2を有効化することで、Windows上にLinux環境を構築することが可能となります。 今回はWindows上でLinux用のDockerコンテナを動作させたいのでこれをインストールする必要があります。
-作業詳細は以下Microsoftドキュメントを参照
-https://docs.microsoft.com/ja-jp/windows/wsl/install
-管理者権限でPowerShellを開き、以下コマンドを実行します。
-wsl --install このとき、引数を追加することでインストールされるLinux ディストリビューションを変更することが出来ますが、今回は特に指定は無いためそのまま実行します。（既定ではUbuntuがインストールされます。）
-無事インストール出来たら一度PCを再起動します。
-3.2. Docker Desktopのインストール 以下から「Docker Desktop for Windows」をクリックし、Docker Desktopをインストールします。"/>
+3.1. WSL2を有効化する WSL2を有効化することで、Windows上にLinux環境を構築することが可能となります。 今回はWindows上でLinux用のDockerコンテナを動作させたいのでこれをインストールする必要があります。"/>
 
     <meta property="og:title" content="Docker Desktop環境構築" />
-<meta property="og:description" content="目次  目次 1. 概要 2. 実行環境 3. 環境構築  3.1. WSL2を有効化する 3.2. Docker Desktopのインストール   4. 動作確認  4.1. Docker Desktop 4.2. Linux（Ubuntu）上でDocker環境の確認 4.3. Docker imageの実行   5. おわりに  　1. 概要 PCが変わる度に１から環境構築や、環境差異に応じたトラブルシュートをするのが面倒だったのでDockerを導入してみます。
+<meta property="og:description" content="目次  目次 記事リンク 1. 概要 2. 実行環境 3. 環境構築  3.1. WSL2を有効化する 3.2. Docker Desktopのインストール   4. 動作確認  4.1. Docker Desktop 4.2. Linux（Ubuntu）上でDocker環境の確認 4.3. Docker imageの実行   5. おわりに  　記事リンク Step1: 今回の記事！
+Step2: Blazor用Dockerfileの作成と実行
+Step3: Docker HubにDocker imageをアップロードする
+　1. 概要 PCが変わる度に１から環境構築や、環境差異に応じたトラブルシュートをするのが面倒だったのでDockerを導入してみます。
 とりあえずは、直近で必要だったDocker Desktopの導入～Blazor WebAssembly実行環境構築までの手順を備忘録として記載するつもりです。
 この記事ではまず、Docker Desktopの導入/実行確認までを行います。
 　2. 実行環境 Windows 10 version 21H1 (OSビルド19043.1469)
 　3. 環境構築 基本的には以下公式手順に従って実行していきます。
 https://docs.docker.com/desktop/windows/install/
-3.1. WSL2を有効化する WSL2を有効化することで、Windows上にLinux環境を構築することが可能となります。 今回はWindows上でLinux用のDockerコンテナを動作させたいのでこれをインストールする必要があります。
-作業詳細は以下Microsoftドキュメントを参照
-https://docs.microsoft.com/ja-jp/windows/wsl/install
-管理者権限でPowerShellを開き、以下コマンドを実行します。
-wsl --install このとき、引数を追加することでインストールされるLinux ディストリビューションを変更することが出来ますが、今回は特に指定は無いためそのまま実行します。（既定ではUbuntuがインストールされます。）
-無事インストール出来たら一度PCを再起動します。
-3.2. Docker Desktopのインストール 以下から「Docker Desktop for Windows」をクリックし、Docker Desktopをインストールします。" />
+3.1. WSL2を有効化する WSL2を有効化することで、Windows上にLinux環境を構築することが可能となります。 今回はWindows上でLinux用のDockerコンテナを動作させたいのでこれをインストールする必要があります。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://mtside01.github.io/kennyblog/posts/2022-04-03_docker-desktop%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-04-03T00:00:00+00:00" />
@@ -115,6 +109,7 @@ wsl --install このとき、引数を追加することでインストールさ
       <h1 id="目次">目次</h1>
 <ul>
 <li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#%E8%A8%98%E4%BA%8B%E3%83%AA%E3%83%B3%E3%82%AF">記事リンク</a></li>
 <li><a href="#1-%E6%A6%82%E8%A6%81">1. 概要</a></li>
 <li><a href="#2-%E5%AE%9F%E8%A1%8C%E7%92%B0%E5%A2%83">2. 実行環境</a></li>
 <li><a href="#3-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89">3. 環境構築</a>
@@ -132,6 +127,12 @@ wsl --install このとき、引数を追加することでインストールさ
 </li>
 <li><a href="#5-%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB">5. おわりに</a></li>
 </ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="記事リンク">記事リンク</h1>
+<p>Step1: 今回の記事！</p>
+<p>Step2: <a href="https://mtside01.github.io/kennyblog/posts/2022-04-20_blazor%E7%94%A8dockerfile%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E5%AE%9F%E8%A1%8C/">Blazor用Dockerfileの作成と実行</a></p>
+<p>Step3: <a href="https://mtside01.github.io/kennyblog/posts/2022-05-08_docker-hub%E3%81%ABdocker-image%E3%82%92%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B/">Docker HubにDocker imageをアップロードする</a></p>
 <p>　
 <!-- raw HTML omitted --></p>
 <h1 id="1-概要">1. 概要</h1>
