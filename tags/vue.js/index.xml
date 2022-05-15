@@ -6,7 +6,17 @@
     <description>Recent content in Vue.js on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sat, 09 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/vue.js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/vue.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VueプロジェクトをGitHub Pagesに公開する</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-05-15_vue%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92github-pages%E3%81%AB%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B/</link>
+      <pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-05-15_vue%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92github-pages%E3%81%AB%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B/</guid>
+      <description>目次  目次 1. 概要 2. Vueのインストール  2.1. Node.jsインストール 2.2. Vue CLIのインストール 2.3. Vue CLIバージョンの確認  2.3.1. トラブルシュート     3. Vueプロジェクトの生成と実行  3.1. Vueプロジェクトの作成 3.2. Vueプロジェクトの実行   4. GitHub Pagesへの公開  4.1. リポジトリの作成 4.2. 作成内容のcommit/push 4.3. GitHub Pagesへの公開設定  4.3.1. gh-pagesの導入 4.3.2. package.jsonの変更 4.3.3. index.htmlの変更 4.3.4. build/deployの実施 4.3.5. GitHub上での確認     5. おわりに 6. 参考  　1. 概要 これまでこのブログでは、CDNでVue.jsを導入することで機能をちょい足しするような使い方をしてきました。
+しかし、より本格的（画面を複数のコンポーネントで構成、画面遷移を行う等）なWeb Appを作る場合、Vue CLI経由でVue.jsプロジェクトの生成/ビルド/デプロイ作業が必要となってきます。</description>
+    </item>
+    
     <item>
       <title>Vue.jsで作る西暦/和暦および日時表示App</title>
       <link>https://mtside01.github.io/kennyblog/posts/2022-04-09_vue.js%E3%81%A7%E4%BD%9C%E3%82%8B%E8%A5%BF%E6%9A%A6%E5%92%8C%E6%9A%A6%E3%81%8A%E3%82%88%E3%81%B3%E6%97%A5%E6%99%82%E8%A1%A8%E7%A4%BAapp/</link>

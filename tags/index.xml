@@ -6,7 +6,34 @@
     <description>Recent content in Tags on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 08 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHub Pages</title>
+      <link>https://mtside01.github.io/kennyblog/tags/github-pages/</link>
+      <pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/tags/github-pages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>https://mtside01.github.io/kennyblog/tags/javascript/</link>
+      <pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vue.js</title>
+      <link>https://mtside01.github.io/kennyblog/tags/vue.js/</link>
+      <pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/tags/vue.js/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Blazor</title>
       <link>https://mtside01.github.io/kennyblog/tags/blazor/</link>
@@ -44,29 +71,11 @@
     </item>
     
     <item>
-      <title>JavaScript</title>
-      <link>https://mtside01.github.io/kennyblog/tags/javascript/</link>
-      <pubDate>Sun, 01 May 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://mtside01.github.io/kennyblog/tags/javascript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>CSS</title>
       <link>https://mtside01.github.io/kennyblog/tags/css/</link>
       <pubDate>Sun, 17 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://mtside01.github.io/kennyblog/tags/css/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Vue.js</title>
-      <link>https://mtside01.github.io/kennyblog/tags/vue.js/</link>
-      <pubDate>Sat, 09 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://mtside01.github.io/kennyblog/tags/vue.js/</guid>
       <description></description>
     </item>
     

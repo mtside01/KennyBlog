@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja-jp">
+  <head>
+    <title>VueプロジェクトをGitHub Pagesに公開する // けにぶろぐ</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.95.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="けにー" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://mtside01.github.io/kennyblog/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="VueプロジェクトをGitHub Pagesに公開する"/>
+<meta name="twitter:description" content="目次  目次 1. 概要 2. Vueのインストール  2.1. Node.jsインストール 2.2. Vue CLIのインストール 2.3. Vue CLIバージョンの確認  2.3.1. トラブルシュート     3. Vueプロジェクトの生成と実行  3.1. Vueプロジェクトの作成 3.2. Vueプロジェクトの実行   4. GitHub Pagesへの公開  4.1. リポジトリの作成 4.2. 作成内容のcommit/push 4.3. GitHub Pagesへの公開設定  4.3.1. gh-pagesの導入 4.3.2. package.jsonの変更 4.3.3. index.htmlの変更 4.3.4. build/deployの実施 4.3.5. GitHub上での確認     5. おわりに 6. 参考  　1. 概要 これまでこのブログでは、CDNでVue.jsを導入することで機能をちょい足しするような使い方をしてきました。
+しかし、より本格的（画面を複数のコンポーネントで構成、画面遷移を行う等）なWeb Appを作る場合、Vue CLI経由でVue.jsプロジェクトの生成/ビルド/デプロイ作業が必要となってきます。"/>
+
+    <meta property="og:title" content="VueプロジェクトをGitHub Pagesに公開する" />
+<meta property="og:description" content="目次  目次 1. 概要 2. Vueのインストール  2.1. Node.jsインストール 2.2. Vue CLIのインストール 2.3. Vue CLIバージョンの確認  2.3.1. トラブルシュート     3. Vueプロジェクトの生成と実行  3.1. Vueプロジェクトの作成 3.2. Vueプロジェクトの実行   4. GitHub Pagesへの公開  4.1. リポジトリの作成 4.2. 作成内容のcommit/push 4.3. GitHub Pagesへの公開設定  4.3.1. gh-pagesの導入 4.3.2. package.jsonの変更 4.3.3. index.htmlの変更 4.3.4. build/deployの実施 4.3.5. GitHub上での確認     5. おわりに 6. 参考  　1. 概要 これまでこのブログでは、CDNでVue.jsを導入することで機能をちょい足しするような使い方をしてきました。
+しかし、より本格的（画面を複数のコンポーネントで構成、画面遷移を行う等）なWeb Appを作る場合、Vue CLI経由でVue.jsプロジェクトの生成/ビルド/デプロイ作業が必要となってきます。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mtside01.github.io/kennyblog/posts/2022-05-15_vue%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92github-pages%E3%81%AB%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-15T00:00:00+00:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://mtside01.github.io/kennyblog/"><img class="app-header-avatar" src="/kennyblog/images/neko.png" alt="けにー" /></a>
+      <h1>けにぶろぐ</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/kennyblog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/about/">About</a>
+      </nav>
+      <p>備忘録や勉強のアウトプットの場</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">VueプロジェクトをGitHub Pagesに公開する</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 15, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/javascript/">JavaScript</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/vue.js/">Vue.js</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="目次">目次</h1>
+<ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#1-%E6%A6%82%E8%A6%81">1. 概要</a></li>
+<li><a href="#2-vue%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">2. Vueのインストール</a>
+<ul>
+<li><a href="#21-nodejs%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">2.1. Node.jsインストール</a></li>
+<li><a href="#22-vue-cli%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">2.2. Vue CLIのインストール</a></li>
+<li><a href="#23-vue-cli%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%AE%E7%A2%BA%E8%AA%8D">2.3. Vue CLIバージョンの確認</a>
+<ul>
+<li><a href="#231-%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%88">2.3.1. トラブルシュート</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-vue%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E7%94%9F%E6%88%90%E3%81%A8%E5%AE%9F%E8%A1%8C">3. Vueプロジェクトの生成と実行</a>
+<ul>
+<li><a href="#31-vue%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90">3.1. Vueプロジェクトの作成</a></li>
+<li><a href="#32-vue%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E5%AE%9F%E8%A1%8C">3.2. Vueプロジェクトの実行</a></li>
+</ul>
+</li>
+<li><a href="#4-github-pages%E3%81%B8%E3%81%AE%E5%85%AC%E9%96%8B">4. GitHub Pagesへの公開</a>
+<ul>
+<li><a href="#41-%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E4%BD%9C%E6%88%90">4.1. リポジトリの作成</a></li>
+<li><a href="#42-%E4%BD%9C%E6%88%90%E5%86%85%E5%AE%B9%E3%81%AEcommitpush">4.2. 作成内容のcommit/push</a></li>
+<li><a href="#43-github-pages%E3%81%B8%E3%81%AE%E5%85%AC%E9%96%8B%E8%A8%AD%E5%AE%9A">4.3. GitHub Pagesへの公開設定</a>
+<ul>
+<li><a href="#431-gh-pages%E3%81%AE%E5%B0%8E%E5%85%A5">4.3.1. gh-pagesの導入</a></li>
+<li><a href="#432-packagejson%E3%81%AE%E5%A4%89%E6%9B%B4">4.3.2. package.jsonの変更</a></li>
+<li><a href="#433-indexhtml%E3%81%AE%E5%A4%89%E6%9B%B4">4.3.3. index.htmlの変更</a></li>
+<li><a href="#434-builddeploy%E3%81%AE%E5%AE%9F%E6%96%BD">4.3.4. build/deployの実施</a></li>
+<li><a href="#435-github%E4%B8%8A%E3%81%A7%E3%81%AE%E7%A2%BA%E8%AA%8D">4.3.5. GitHub上での確認</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5-%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB">5. おわりに</a></li>
+<li><a href="#6-%E5%8F%82%E8%80%83">6. 参考</a></li>
+</ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="1-概要">1. 概要</h1>
+<p>これまでこのブログでは、CDNでVue.jsを導入することで機能をちょい足しするような使い方をしてきました。</p>
+<p>しかし、より本格的（画面を複数のコンポーネントで構成、画面遷移を行う等）なWeb Appを作る場合、Vue CLI経由でVue.jsプロジェクトの生成/ビルド/デプロイ作業が必要となってきます。</p>
+<p>よって今回の記事では、Vueのローカル環境構築から、サンプルプロジェクトの作成、GitHub Pagesに公開するまでの一連の流れを記載します。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="2-vueのインストール">2. Vueのインストール</h1>
+<h2 id="21-nodejsインストール">2.1. Node.jsインストール</h2>
+<p>Vueをインストールする上でNode.jsを入れておく必要があります。
+まだ入れていない場合は、以下などを参考にインストールしておいて下さい。</p>
+<p><a href="https://qiita.com/sefoo0104/items/0653c935ea4a4db9dc2b">https://qiita.com/sefoo0104/items/0653c935ea4a4db9dc2b</a></p>
+<h2 id="22-vue-cliのインストール">2.2. Vue CLIのインストール</h2>
+<p>以下コマンドでグローバル環境にVue CLIを導入します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>npm install -g @vue/cli
+</span></span></code></pre></div><p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/vuecliinstall.png" alt="Vue CLI install"></p>
+<p>色々とWARNINGが出るかもしれませんが無視で構いません。
+インストールが終わると、以下のように「added XXX packages, &hellip;」のような文言が表示されるはずです。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/vuecliinstallfinished.png" alt="Vue CLI install finished"></p>
+<h2 id="23-vue-cliバージョンの確認">2.3. Vue CLIバージョンの確認</h2>
+<p>無事インストールされたことを確認するために、Vue CLIのバージョン確認コマンドを実行します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>vue --version
+</span></span></code></pre></div><p>以下のようにバージョン表示がされたら成功です。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/vueversion.png" alt="Vue version"></p>
+<h3 id="231-トラブルシュート">2.3.1. トラブルシュート</h3>
+<p>もし、以下のように「このシステムではスクリプトの実行が無効になっているため～」との文言が表示され、バージョン確認コマンドが実行できなかった場合、実行ポリシーの設定を見直す必要があります。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/ExecutionPolicy.png" alt="Execution Policy"></p>
+<p>以下あたりを参考に設定し直して下さい。</p>
+<ul>
+<li><a href="https://qiita.com/ponsuke0531/items/4629626a3e84bcd9398f">https://qiita.com/ponsuke0531/items/4629626a3e84bcd9398f</a></li>
+<li><a href="https://qiita.com/kadotaoru/items/0fac22195b925a1b0a83">https://qiita.com/kadotaoru/items/0fac22195b925a1b0a83</a></li>
+</ul>
+<p>手っ取り早く解決したい場合は、とりあえず以下コマンドを実行すれば良いと思います。（自己責任でお願いします。）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>Set-ExecutionPolicy RemoteSigned -Scope <span style="color:#66d9ef">Process</span>
+</span></span></code></pre></div><p>　
+<!-- raw HTML omitted --></p>
+<h1 id="3-vueプロジェクトの生成と実行">3. Vueプロジェクトの生成と実行</h1>
+<h2 id="31-vueプロジェクトの作成">3.1. Vueプロジェクトの作成</h2>
+<p>上記までで実行環境は整ったので、このセクションでは実際にサンプルプロジェクトの作成を行っていきます。
+プロジェクトを作成したいディレクトリまで移動した後に、以下コマンドを実行します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>vue create [プロジェクト名]
+</span></span></code></pre></div><p>作成時にVue Version等のオプションを聞かれますが、とりあえずデフォルト（Vue 3）で問題ないと思います。</p>
+<p>※ 下図では、「sample」という名前でVueプロジェクトを作成してみています。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/vuecreate.png" alt="Vue create"></p>
+<h2 id="32-vueプロジェクトの実行">3.2. Vueプロジェクトの実行</h2>
+<p>無事プロジェクトファイルが作成されたことを確認するため、ローカルホストの立ち上げと実行確認を行います。</p>
+<p>作成したプロジェクトのルートディレクトリに移動した後に、以下コマンドを実行します。</p>
+<pre tabindex="0"><code>npm run serve
+</code></pre><p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/runserver.png" alt="npm run serve"></p>
+<p>すこし時間が立った後に、ローカルホストでの実行ポートが表示されます。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/localhost.png" alt="local host"></p>
+<p>ブラウザで指定ポートへアクセスしてみます。
+「Welcome to Your Vue.js App」のような画面が表示されれば成功です。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/welcome.png" alt="npm run serve"></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="4-github-pagesへの公開">4. GitHub Pagesへの公開</h1>
+<h2 id="41-リポジトリの作成">4.1. リポジトリの作成</h2>
+<p>上記に続いて、GitHub上へのリポジトリ登録とGutHub Pagesへの公開作業を行います。</p>
+<p>まずは、自身のGutHubアカウント上でリポジトリを予め作成しておいて下さい。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/newrepos.png" alt="new repository"></p>
+<h2 id="42-作成内容のcommitpush">4.2. 作成内容のcommit/push</h2>
+<p>コマンド/SourceTree何でも構いませんが、一旦作成した内容をGitHub上リポジトリにpushしておきます。</p>
+<p>pushした内容がリポジトリ上に反映されていることを確認します。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/pushrepos.png" alt="push repository"></p>
+<h2 id="43-github-pagesへの公開設定">4.3. GitHub Pagesへの公開設定</h2>
+<h3 id="431-gh-pagesの導入">4.3.1. gh-pagesの導入</h3>
+<p><a href="https://www.npmjs.com/package/gh-pages">gh-pages</a>というパッケージを使うことで、1コマンドで簡単にGitHub Pagesへのデプロイを行うことが出来ます。</p>
+<p>以下コマンドでインストールしていきます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>npm install gh-pages --save-dev
+</span></span></code></pre></div><p>※ 今回はとりあえず今作業しているプロジェクトだけにgh-pagesパッケージを適用したかったので<code>--save-dev</code>オプションを付けていますが、グローバルインストール<code>-g</code>でも問題ないと思います。</p>
+<p>インストールが完了すると、「added XX packages, &hellip;」のような文言が表示されるはずです。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/gh-pages.png" alt="install gh-pages"></p>
+<h3 id="432-packagejsonの変更">4.3.2. package.jsonの変更</h3>
+<p>gh-pagesパッケージを使用するために、package.json内の以下2箇所の追記/変更確認をします。</p>
+<ol>
+<li>&ldquo;scripts&quot;欄に&quot;deploy&rdquo;: &ldquo;gh-pages -d dist&quot;記載を追記</li>
+<li>&ldquo;devDependencies&quot;欄に&quot;gh-pages&rdquo;: &ldquo;[version]&ldquo;記載があることを確認</li>
+</ol>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/package.png" alt="package.json"></p>
+<h3 id="433-indexhtmlの変更">4.3.3. index.htmlの変更</h3>
+<p>GitHub Pagesが正しく公開されていることの確認準備として、公開対象となるpublic/index.htmlを適当に変更しておきます。
+今回はh1タグを追加しました。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/index.png" alt="index.html"></p>
+<h3 id="434-builddeployの実施">4.3.4. build/deployの実施</h3>
+<p>buildコマンドにより、本番環境用ファイルを生成します。</p>
+<pre tabindex="0"><code>npm run build
+</code></pre><p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/build.png" alt="build"></p>
+<p>その後、deployコマンドにより、gh-pagesブランチの作成/pushおよびGitHub Pagesへの公開が実行されます。</p>
+<pre tabindex="0"><code>npm run deploy
+</code></pre><p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/deploy.png" alt="deploy"></p>
+<h3 id="435-github上での確認">4.3.5. GitHub上での確認</h3>
+<p>自身のGitHubリポジトリを見ると、先程までの作業でgh-pagesブランチが作成されていることが確認できると思います。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/gh-pagesbranch.png" alt="gh-pages branch"></p>
+<p>また、GitHub Pagesの公開設定も済んでおり、既に公開状態となっています。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/githubpagessetting.png" alt="GitHub Pages Settings"></p>
+<p>公開URLにアクセスすると、public/index.htmlに記載した内容が表示されるはずです。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-15/githubpages.png" alt="GitHub Pages"></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="5-おわりに">5. おわりに</h1>
+<p>今回の記事では、Vueを使って本格的なWeb Appを作る際の環境構築方法、GitHub Pagesへの公開方法を学びました。</p>
+<p>今後は、これらの環境を利用して、より高度なWeb Appの作成に挑戦してみようと思います。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="6-参考">6. 参考</h1>
+<ul>
+<li><a href="https://zenn.dev/sohhakasaka/articles/3e386fa9a650cd">https://zenn.dev/sohhakasaka/articles/3e386fa9a650cd</a></li>
+<li><a href="https://codezine.jp/article/detail/14896">https://codezine.jp/article/detail/14896</a></li>
+<li><a href="https://qiita.com/sefoo0104/items/0653c935ea4a4db9dc2b">https://qiita.com/sefoo0104/items/0653c935ea4a4db9dc2b</a></li>
+<li><a href="https://www.youtube.com/watch?v=iqe8HPJuY80&amp;t=214s">https://www.youtube.com/watch?v=iqe8HPJuY80&amp;t=214s</a></li>
+<li><a href="https://qiita.com/ponsuke0531/items/4629626a3e84bcd9398f">https://qiita.com/ponsuke0531/items/4629626a3e84bcd9398f</a></li>
+<li><a href="https://qiita.com/kadotaoru/items/0fac22195b925a1b0a83">https://qiita.com/kadotaoru/items/0fac22195b925a1b0a83</a></li>
+<li><a href="https://qiita.com/star__hoshi/items/490959aee12dbf528f7c">https://qiita.com/star__hoshi/items/490959aee12dbf528f7c</a></li>
+<li><a href="https://www.npmjs.com/package/gh-pages">https://www.npmjs.com/package/gh-pages</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

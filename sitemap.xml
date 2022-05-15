@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://mtside01.github.io/kennyblog/tags/github-pages/</loc>
+    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/tags/javascript/</loc>
+    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/posts/</loc>
+    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/tags/</loc>
+    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/tags/vue.js/</loc>
+    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/posts/2022-05-15_vue%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92github-pages%E3%81%AB%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B/</loc>
+    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mtside01.github.io/kennyblog/</loc>
+    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/blazor/</loc>
     <lastmod>2022-05-08T00:00:00+00:00</lastmod>
   </url><url>
@@ -11,22 +32,10 @@
     <loc>https://mtside01.github.io/kennyblog/posts/2022-05-08_docker-hub%E3%81%ABdocker-image%E3%82%92%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B/</loc>
     <lastmod>2022-05-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mtside01.github.io/kennyblog/posts/</loc>
-    <lastmod>2022-05-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mtside01.github.io/kennyblog/tags/</loc>
-    <lastmod>2022-05-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mtside01.github.io/kennyblog/</loc>
-    <lastmod>2022-05-08T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/bootstrap/</loc>
     <lastmod>2022-05-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/html/</loc>
-    <lastmod>2022-05-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mtside01.github.io/kennyblog/tags/javascript/</loc>
     <lastmod>2022-05-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/posts/2022-05-01_javascript%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9/</loc>
@@ -40,9 +49,6 @@
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/tags/css/</loc>
     <lastmod>2022-04-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mtside01.github.io/kennyblog/tags/vue.js/</loc>
-    <lastmod>2022-04-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mtside01.github.io/kennyblog/posts/2022-04-09_vue.js%E3%81%A7%E4%BD%9C%E3%82%8B%E8%A5%BF%E6%9A%A6%E5%92%8C%E6%9A%A6%E3%81%8A%E3%82%88%E3%81%B3%E6%97%A5%E6%99%82%E8%A1%A8%E7%A4%BAapp/</loc>
     <lastmod>2022-04-09T00:00:00+00:00</lastmod>
