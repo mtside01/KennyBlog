@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TypeScript on けにぶろぐ</title>
+    <link>https://mtside01.github.io/kennyblog/tags/typescript/</link>
+    <description>Recent content in TypeScript on けにぶろぐ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sun, 22 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>サバイバルTypeScript勉強備忘録1</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-05-22_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B21/</link>
+      <pubDate>Sun, 22 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-05-22_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B21/</guid>
+      <description>目次  目次 1. 概要 2. TypeScriptの特徴 3. TypeScriptを使う利点  3.1. 大規模開発に適している 3.2. JavaScriptの知識があれば使い始められる 3.3. 古いJavaScript環境を対象とした開発シーンでも最新の構文が使える 3.4. 利用者人口の多いAltJS言語である   4. 静的型付けと動的型付けの違い 5. TypeScriptを採用できる範囲 6. おわりに 7. 参考  　1. 概要 これまでこのブログでは、JavaScriptを利用したWeb Appをいくつか作ってきていますが、 動作確認時、型が使えないことに起因する代入バグで困ることが何度もありました。
+その解決として、今後はTypeScriptを勉強/導入しようと考えています。 まずは入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載していこうと思います。
+今回の記事では、第2章 TypeScriptのあらましについて勉強した内容を記載します。
+　2. TypeScriptの特徴  JavaScriptに型が追加されたもの  型があることでコンパイル時に様々な問題を発見可能 エディタの恩恵により、コーディング中の型チェックなども可能   TypeScriptで書かれたコードはJavaScriptにコンパイル（トランスパイル）される JavaScriptに互換性があり、JavaScriptが実行できるすべてのブラウザ、コンピュータ、OSで動作可能  拡張部分は主に型に関するものであり、その他の殆どの文法はJavaScriptに由来する TypeScriptを導入したとしても、既存のJavaScript資産はそのまま活用可能   オープンソース  　3. TypeScriptを使う利点 3.1. 大規模開発に適している 大規模アプリケーション開発に求められる以下の三大特徴をTypeScriptは備えている
+ 型による静的チェック モジュール性 緩やかな学習コスト  3.2. JavaScriptの知識があれば使い始められる TypeScriptはJavaScriptの仕様はそのままに、TypeScriptの機能/利点を追加している。</description>
+    </item>
+    
+  </channel>
+</rss>

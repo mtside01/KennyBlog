@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ja-jp">
+  <head>
+    <title>サバイバルTypeScript勉強備忘録1 // けにぶろぐ</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.95.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="けにー" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://mtside01.github.io/kennyblog/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="サバイバルTypeScript勉強備忘録1"/>
+<meta name="twitter:description" content="目次  目次 1. 概要 2. TypeScriptの特徴 3. TypeScriptを使う利点  3.1. 大規模開発に適している 3.2. JavaScriptの知識があれば使い始められる 3.3. 古いJavaScript環境を対象とした開発シーンでも最新の構文が使える 3.4. 利用者人口の多いAltJS言語である   4. 静的型付けと動的型付けの違い 5. TypeScriptを採用できる範囲 6. おわりに 7. 参考  　1. 概要 これまでこのブログでは、JavaScriptを利用したWeb Appをいくつか作ってきていますが、 動作確認時、型が使えないことに起因する代入バグで困ることが何度もありました。
+その解決として、今後はTypeScriptを勉強/導入しようと考えています。 まずは入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載していこうと思います。
+今回の記事では、第2章 TypeScriptのあらましについて勉強した内容を記載します。
+　2. TypeScriptの特徴  JavaScriptに型が追加されたもの  型があることでコンパイル時に様々な問題を発見可能 エディタの恩恵により、コーディング中の型チェックなども可能   TypeScriptで書かれたコードはJavaScriptにコンパイル（トランスパイル）される JavaScriptに互換性があり、JavaScriptが実行できるすべてのブラウザ、コンピュータ、OSで動作可能  拡張部分は主に型に関するものであり、その他の殆どの文法はJavaScriptに由来する TypeScriptを導入したとしても、既存のJavaScript資産はそのまま活用可能   オープンソース  　3. TypeScriptを使う利点 3.1. 大規模開発に適している 大規模アプリケーション開発に求められる以下の三大特徴をTypeScriptは備えている
+ 型による静的チェック モジュール性 緩やかな学習コスト  3.2. JavaScriptの知識があれば使い始められる TypeScriptはJavaScriptの仕様はそのままに、TypeScriptの機能/利点を追加している。"/>
+
+    <meta property="og:title" content="サバイバルTypeScript勉強備忘録1" />
+<meta property="og:description" content="目次  目次 1. 概要 2. TypeScriptの特徴 3. TypeScriptを使う利点  3.1. 大規模開発に適している 3.2. JavaScriptの知識があれば使い始められる 3.3. 古いJavaScript環境を対象とした開発シーンでも最新の構文が使える 3.4. 利用者人口の多いAltJS言語である   4. 静的型付けと動的型付けの違い 5. TypeScriptを採用できる範囲 6. おわりに 7. 参考  　1. 概要 これまでこのブログでは、JavaScriptを利用したWeb Appをいくつか作ってきていますが、 動作確認時、型が使えないことに起因する代入バグで困ることが何度もありました。
+その解決として、今後はTypeScriptを勉強/導入しようと考えています。 まずは入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載していこうと思います。
+今回の記事では、第2章 TypeScriptのあらましについて勉強した内容を記載します。
+　2. TypeScriptの特徴  JavaScriptに型が追加されたもの  型があることでコンパイル時に様々な問題を発見可能 エディタの恩恵により、コーディング中の型チェックなども可能   TypeScriptで書かれたコードはJavaScriptにコンパイル（トランスパイル）される JavaScriptに互換性があり、JavaScriptが実行できるすべてのブラウザ、コンピュータ、OSで動作可能  拡張部分は主に型に関するものであり、その他の殆どの文法はJavaScriptに由来する TypeScriptを導入したとしても、既存のJavaScript資産はそのまま活用可能   オープンソース  　3. TypeScriptを使う利点 3.1. 大規模開発に適している 大規模アプリケーション開発に求められる以下の三大特徴をTypeScriptは備えている
+ 型による静的チェック モジュール性 緩やかな学習コスト  3.2. JavaScriptの知識があれば使い始められる TypeScriptはJavaScriptの仕様はそのままに、TypeScriptの機能/利点を追加している。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mtside01.github.io/kennyblog/posts/2022-05-22_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B21/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-22T00:00:00+00:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://mtside01.github.io/kennyblog/"><img class="app-header-avatar" src="/kennyblog/images/neko.png" alt="けにー" /></a>
+      <h1>けにぶろぐ</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/kennyblog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/about/">About</a>
+      </nav>
+      <p>備忘録や勉強のアウトプットの場</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">サバイバルTypeScript勉強備忘録1</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 22, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/javascript/">JavaScript</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/typescript/">TypeScript</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="目次">目次</h1>
+<ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#1-%E6%A6%82%E8%A6%81">1. 概要</a></li>
+<li><a href="#2-typescript%E3%81%AE%E7%89%B9%E5%BE%B4">2. TypeScriptの特徴</a></li>
+<li><a href="#3-typescript%E3%82%92%E4%BD%BF%E3%81%86%E5%88%A9%E7%82%B9">3. TypeScriptを使う利点</a>
+<ul>
+<li><a href="#31-%E5%A4%A7%E8%A6%8F%E6%A8%A1%E9%96%8B%E7%99%BA%E3%81%AB%E9%81%A9%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B">3.1. 大規模開発に適している</a></li>
+<li><a href="#32-javascript%E3%81%AE%E7%9F%A5%E8%AD%98%E3%81%8C%E3%81%82%E3%82%8C%E3%81%B0%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%89%E3%82%8C%E3%82%8B">3.2. JavaScriptの知識があれば使い始められる</a></li>
+<li><a href="#33-%E5%8F%A4%E3%81%84javascript%E7%92%B0%E5%A2%83%E3%82%92%E5%AF%BE%E8%B1%A1%E3%81%A8%E3%81%97%E3%81%9F%E9%96%8B%E7%99%BA%E3%82%B7%E3%83%BC%E3%83%B3%E3%81%A7%E3%82%82%E6%9C%80%E6%96%B0%E3%81%AE%E6%A7%8B%E6%96%87%E3%81%8C%E4%BD%BF%E3%81%88%E3%82%8B">3.3. 古いJavaScript環境を対象とした開発シーンでも最新の構文が使える</a></li>
+<li><a href="#34-%E5%88%A9%E7%94%A8%E8%80%85%E4%BA%BA%E5%8F%A3%E3%81%AE%E5%A4%9A%E3%81%84altjs%E8%A8%80%E8%AA%9E%E3%81%A7%E3%81%82%E3%82%8B">3.4. 利用者人口の多いAltJS言語である</a></li>
+</ul>
+</li>
+<li><a href="#4-%E9%9D%99%E7%9A%84%E5%9E%8B%E4%BB%98%E3%81%91%E3%81%A8%E5%8B%95%E7%9A%84%E5%9E%8B%E4%BB%98%E3%81%91%E3%81%AE%E9%81%95%E3%81%84">4. 静的型付けと動的型付けの違い</a></li>
+<li><a href="#5-typescript%E3%82%92%E6%8E%A1%E7%94%A8%E3%81%A7%E3%81%8D%E3%82%8B%E7%AF%84%E5%9B%B2">5. TypeScriptを採用できる範囲</a></li>
+<li><a href="#6-%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB">6. おわりに</a></li>
+<li><a href="#7-%E5%8F%82%E8%80%83">7. 参考</a></li>
+</ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="1-概要">1. 概要</h1>
+<p>これまでこのブログでは、JavaScriptを利用したWeb Appをいくつか作ってきていますが、
+動作確認時、型が使えないことに起因する代入バグで困ることが何度もありました。</p>
+<p>その解決として、今後はTypeScriptを勉強/導入しようと考えています。
+まずは入門教材として<a href="https://typescriptbook.jp/">サバイバルTypeScript</a>で学習し、個人的に重要だと思った箇所を備忘録として記事に記載していこうと思います。</p>
+<p>今回の記事では、<a href="https://typescriptbook.jp/overview">第2章 TypeScriptのあらまし</a>について勉強した内容を記載します。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="2-typescriptの特徴">2. TypeScriptの特徴</h1>
+<ul>
+<li>JavaScriptに型が追加されたもの
+<ul>
+<li>型があることでコンパイル時に様々な問題を発見可能</li>
+<li>エディタの恩恵により、コーディング中の型チェックなども可能</li>
+</ul>
+</li>
+<li>TypeScriptで書かれたコードはJavaScriptにコンパイル（トランスパイル）される</li>
+<li>JavaScriptに互換性があり、JavaScriptが実行できるすべてのブラウザ、コンピュータ、OSで動作可能
+<ul>
+<li>拡張部分は主に型に関するものであり、その他の殆どの文法はJavaScriptに由来する</li>
+<li>TypeScriptを導入したとしても、既存のJavaScript資産はそのまま活用可能</li>
+</ul>
+</li>
+<li>オープンソース</li>
+</ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="3-typescriptを使う利点">3. TypeScriptを使う利点</h1>
+<h2 id="31-大規模開発に適している">3.1. 大規模開発に適している</h2>
+<p>大規模アプリケーション開発に求められる以下の三大特徴をTypeScriptは備えている</p>
+<ol>
+<li>型による静的チェック</li>
+<li>モジュール性</li>
+<li>緩やかな学習コスト</li>
+</ol>
+<h2 id="32-javascriptの知識があれば使い始められる">3.2. JavaScriptの知識があれば使い始められる</h2>
+<p>TypeScriptはJavaScriptの仕様はそのままに、TypeScriptの機能/利点を追加している。</p>
+<p>そのため、通常新しい言語は学習に数ヶ月かかるところを、TypeScriptではひとまずJavaScriptとしてコーディングし、少しづつTypeScriptの恩恵を最大化していくようにコードを手直しするアプローチが可能。</p>
+<p>※ 注意点として、JavaScripで罠とされている言語仕様もそのまま引き継いでしまっている。</p>
+<h2 id="33-古いjavascript環境を対象とした開発シーンでも最新の構文が使える">3.3. 古いJavaScript環境を対象とした開発シーンでも最新の構文が使える</h2>
+<p>TypeScriptはコンパイル時にJavaScriptバージョンを選択可能。</p>
+<p>また、TypeScriptはECMAScript（JavaScriptの仕様、毎年1回メジャーバージョンアップされる）へ準拠しており、そこで採択された新機能はいち早く取り入れられる。</p>
+<p>加えて、ESNext（将来JavaScriptで使用可能となることが確定している言語仕様）も先取りして取り入れている。</p>
+<p>※ 注意点として、新しいAPIの利用だけは旧バージョンJavaScriptでの実行エラーとなる。（TypeScriptはあくまで構文の変換だけを担っているため）</p>
+<h2 id="34-利用者人口の多いaltjs言語である">3.4. 利用者人口の多いAltJS言語である</h2>
+<p>Stack Overflowなどの複数の調査において利用者人口/満足度で上位を獲得している。</p>
+<p>利用者人口が多く、満足度が高い言語を選択することで、以下の利点を享受できる。</p>
+<ul>
+<li>情報が豊富に出回っており、学習/トラブルシュートがしやすい</li>
+<li>エコシステムが充実しており、数多くのIDEサポート/フレームワークの恩恵を得られる</li>
+<li>採用しているプロジェクト/企業が多く、就職に有利になる</li>
+</ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="4-静的型付けと動的型付けの違い">4. 静的型付けと動的型付けの違い</h1>
+<table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>静的型付け言語</th>
+<th>動的型付け言語</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主な言語</td>
+<td>C言語, Java, TypeScriptなど</td>
+<td>Ruby, Python, PHP, JavaScriptなど</td>
+</tr>
+<tr>
+<td>型決定タイミング</td>
+<td>実行時に変数の型が定まる。<!-- raw HTML omitted -->型にまつわる問題はプログラムを実行してみないと発覚しない。</td>
+<td>コンパイル時に変数の型が定まる。<!-- raw HTML omitted -->型にまつわる問題はプログラムを実行しなくても発見できる。</td>
+</tr>
+</tbody>
+</table>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="5-typescriptを採用できる範囲">5. TypeScriptを採用できる範囲</h1>
+<table>
+<thead>
+<tr>
+<th>採用分野</th>
+<th>メモ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>フロントエンド</td>
+<td>ブラウザではJavaScriptが圧倒的な地位を確立しているため、大きな力を発揮することが可能。</td>
+</tr>
+<tr>
+<td>バックエンド</td>
+<td><a href="https://nodejs.org/ja/">Node.js</a>などのサーバーサイドJavaScript実行環境のエコシステムに乗ることが可能。</td>
+</tr>
+<tr>
+<td>デスクトップApp</td>
+<td><a href="https://www.electronjs.org/">Electron</a>などのフレームワークを利用することでデスクトップApp開発が可能。</td>
+</tr>
+<tr>
+<td>CLI App</td>
+<td><a href="https://github.com/oclif/oclif">oclif</a>などのCLIアプリケーションフレームワークを利用することでCLI App開発が可能。</td>
+</tr>
+<tr>
+<td>サーバレス(FaaS)</td>
+<td>サーバーレスとは、サーバーの構築や保守なしに、サーバーサイドのプログラムを実行できる仕組み。<!-- raw HTML omitted --> AWS <a href="https://aws.amazon.com/lambda/">Lambda</a>などを利用することで、TypeScriptでサーバーレスなウェブアプリケーションを提供可能。</td>
+</tr>
+<tr>
+<td>インフラ構成管理 (IaC)</td>
+<td>インフラ構成をコードで定義し、プログラマブルにすることをIaC(Infrastructure as Code)と呼ぶ。<!-- raw HTML omitted --> AWSのインフラ構成を自動化するツール<a href="https://aws.amazon.com/jp/cdk/">AWS CDK</a>はTypeScriptをサポートしている。</td>
+</tr>
+<tr>
+<td>Google Apps Script</td>
+<td>Google Spreadsheetなどには、JavaScriptで機能を拡張する仕組みが備わっており、それをGoogle Apps Scriptと呼ぶ。<!-- raw HTML omitted --> TypeScriptで書いたコードはJavaScriptにコンパイルすれば、Google Apps Scriptで利用可能。</td>
+</tr>
+<tr>
+<td>ブラウザ拡張</td>
+<td>Google ChromeやFirefoxなどのブラウザ拡張はavaScriptで書くことが可能。コンパイルによりTypeScriptも利用可能。</td>
+</tr>
+<tr>
+<td>機械学習</td>
+<td><a href="https://www.tensorflow.org/js/">TensorFlow.js</a>など、JavaScript用の機械学習ライブラリを利用可能。</td>
+</tr>
+<tr>
+<td>組み込み</td>
+<td>MicrosoftはTypeScriptのサブセット言語として、リソースの少ない組み込みデバイスを対象としたStatic TypeScript(STS)を開発中。</td>
+</tr>
+<tr>
+<td>WebAssembly</td>
+<td><a href="https://www.assemblyscript.org/">AssemblyScript</a>など、TypeScriptでWASMを開発できるようにする試みも出てきている。</td>
+</tr>
+<tr>
+<td>　</td>
+<td></td>
+</tr>
+<tr>
+<td><!-- raw HTML omitted --></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="6-おわりに">6. おわりに</h1>
+<p>今回は<a href="https://typescriptbook.jp/">サバイバルTypeScript</a>の<a href="https://typescriptbook.jp/overview">第2章 TypeScriptのあらまし</a>を題材に、TypeScriptの概要や利点について勉強しました。</p>
+<p>次回の記事では、<a href="https://typescriptbook.jp/">サバイバルTypeScript</a>の<a href="https://typescriptbook.jp/tutorials">第三章 作って学ぶTypeScript</a>を題材に、実際にコーディングを行ってみるつもりです。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="7-参考">7. 参考</h1>
+<ul>
+<li><a href="https://typescriptbook.jp/">https://typescriptbook.jp/</a></li>
+<li><a href="https://typescriptbook.jp/overview">https://typescriptbook.jp/overview</a></li>
+<li><a href="https://nodejs.org/ja/">https://nodejs.org/ja/</a></li>
+<li><a href="https://www.electronjs.org/">https://www.electronjs.org/</a></li>
+<li><a href="https://github.com/oclif/oclif">https://github.com/oclif/oclif</a></li>
+<li><a href="https://aws.amazon.com/lambda/">https://aws.amazon.com/lambda/</a></li>
+<li><a href="https://aws.amazon.com/jp/cdk/">https://aws.amazon.com/jp/cdk/</a></li>
+<li><a href="https://www.tensorflow.org/js/">https://www.tensorflow.org/js/</a></li>
+<li><a href="https://www.assemblyscript.org/">https://www.assemblyscript.org/</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
