@@ -6,9 +6,27 @@
     <description>Recent content in JavaScript on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 22 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>サバイバルTypeScript勉強備忘録1</title>
+      <title>サバイバルTypeScript勉強備忘録2（環境構築とコンパイル）</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-05-28_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B22/</link>
+      <pubDate>Sat, 28 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-05-28_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B22/</guid>
+      <description>目次  目次 1. 概要 2. 開発環境の準備  2.1. Node.jsのインストール 2.2. TypeScriptコンパイラのインストール  2.2.1. トラブルシュート     3. 簡単な関数を作ってみる  3.1. JavaScriptで型が無くて困る例 3.2. TypeScriptを導入して型を追加する   4. おわりに 5. 参考   1. 概要 このシリーズでは、TypeScriptの入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載しています。
+今回の記事では、第三章 作って学ぶTypeScriptを題材に学んだ内容を記載します。
+　2. 開発環境の準備 2.1. Node.jsのインストール 私の環境では既にnodeをインストール済みなので省略します。 まだの方は以下などを参考にして下さい。
+https://qiita.com/echolimitless/items/83f8658cf855de04b9ce
+2.2. TypeScriptコンパイラのインストール 以下コマンドでインストールします。
+npm install -g typescript ※ -gコマンドでグローバル環境にインストールしています。
+以下コマンドでバージョン表示されればOK
+tsc -v 2.2.1. トラブルシュート PowerShellの実行ポリシーがRestricted状態だったので、怒られてしまった。（Vue環境構築以来2回目）
+以下コマンドで現在のユーザの実行ポリシーをRemoteSignedに変更しました。
+ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser ※ 詳しくは以下を参照</description>
+    </item>
+    
+    <item>
+      <title>サバイバルTypeScript勉強備忘録1（TypeScriptの概要）</title>
       <link>https://mtside01.github.io/kennyblog/posts/2022-05-22_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B21/</link>
       <pubDate>Sun, 22 May 2022 00:00:00 +0000</pubDate>
       

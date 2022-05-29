@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ja-jp">
   <head>
-    <title>サバイバルTypeScript勉強備忘録1 // けにぶろぐ</title>
+    <title>サバイバルTypeScript勉強備忘録1（TypeScriptの概要） // けにぶろぐ</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
     <meta name="generator" content="Hugo 0.95.0" />
@@ -12,14 +12,14 @@
 
     
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="サバイバルTypeScript勉強備忘録1"/>
+<meta name="twitter:title" content="サバイバルTypeScript勉強備忘録1（TypeScriptの概要）"/>
 <meta name="twitter:description" content="目次  目次 1. 概要 2. TypeScriptの特徴 3. TypeScriptを使う利点  3.1. 大規模開発に適している 3.2. JavaScriptの知識があれば使い始められる 3.3. 古いJavaScript環境を対象とした開発シーンでも最新の構文が使える 3.4. 利用者人口の多いAltJS言語である   4. 静的型付けと動的型付けの違い 5. TypeScriptを採用できる範囲 6. おわりに 7. 参考  　1. 概要 これまでこのブログでは、JavaScriptを利用したWeb Appをいくつか作ってきていますが、 動作確認時、型が使えないことに起因する代入バグで困ることが何度もありました。
 その解決として、今後はTypeScriptを勉強/導入しようと考えています。 まずは入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載していこうと思います。
 今回の記事では、第2章 TypeScriptのあらましについて勉強した内容を記載します。
 　2. TypeScriptの特徴  JavaScriptに型が追加されたもの  型があることでコンパイル時に様々な問題を発見可能 エディタの恩恵により、コーディング中の型チェックなども可能   TypeScriptで書かれたコードはJavaScriptにコンパイル（トランスパイル）される JavaScriptに互換性があり、JavaScriptが実行できるすべてのブラウザ、コンピュータ、OSで動作可能  拡張部分は主に型に関するものであり、その他の殆どの文法はJavaScriptに由来する TypeScriptを導入したとしても、既存のJavaScript資産はそのまま活用可能   オープンソース  　3. TypeScriptを使う利点 3.1. 大規模開発に適している 大規模アプリケーション開発に求められる以下の三大特徴をTypeScriptは備えている
  型による静的チェック モジュール性 緩やかな学習コスト  3.2. JavaScriptの知識があれば使い始められる TypeScriptはJavaScriptの仕様はそのままに、TypeScriptの機能/利点を追加している。"/>
 
-    <meta property="og:title" content="サバイバルTypeScript勉強備忘録1" />
+    <meta property="og:title" content="サバイバルTypeScript勉強備忘録1（TypeScriptの概要）" />
 <meta property="og:description" content="目次  目次 1. 概要 2. TypeScriptの特徴 3. TypeScriptを使う利点  3.1. 大規模開発に適している 3.2. JavaScriptの知識があれば使い始められる 3.3. 古いJavaScript環境を対象とした開発シーンでも最新の構文が使える 3.4. 利用者人口の多いAltJS言語である   4. 静的型付けと動的型付けの違い 5. TypeScriptを採用できる範囲 6. おわりに 7. 参考  　1. 概要 これまでこのブログでは、JavaScriptを利用したWeb Appをいくつか作ってきていますが、 動作確認時、型が使えないことに起因する代入バグで困ることが何度もありました。
 その解決として、今後はTypeScriptを勉強/導入しようと考えています。 まずは入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載していこうと思います。
 今回の記事では、第2章 TypeScriptのあらましについて勉強した内容を記載します。
@@ -69,7 +69,7 @@
       
   <article class="post">
     <header class="post-header">
-      <h1 class ="post-title">サバイバルTypeScript勉強備忘録1</h1>
+      <h1 class ="post-title">サバイバルTypeScript勉強備忘録1（TypeScriptの概要）</h1>
       <div class="post-meta">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
@@ -187,8 +187,8 @@
 </tr>
 <tr>
 <td>型決定タイミング</td>
-<td>実行時に変数の型が定まる。<!-- raw HTML omitted -->型にまつわる問題はプログラムを実行してみないと発覚しない。</td>
 <td>コンパイル時に変数の型が定まる。<!-- raw HTML omitted -->型にまつわる問題はプログラムを実行しなくても発見できる。</td>
+<td>実行時に変数の型が定まる。<!-- raw HTML omitted -->型にまつわる問題はプログラムを実行してみないと発覚しない。</td>
 </tr>
 </tbody>
 </table>
@@ -233,7 +233,7 @@
 </tr>
 <tr>
 <td>ブラウザ拡張</td>
-<td>Google ChromeやFirefoxなどのブラウザ拡張はavaScriptで書くことが可能。コンパイルによりTypeScriptも利用可能。</td>
+<td>Google ChromeやFirefoxなどのブラウザ拡張はJavaScriptで書くことが可能。コンパイルによりTypeScriptも利用可能。</td>
 </tr>
 <tr>
 <td>機械学習</td>
