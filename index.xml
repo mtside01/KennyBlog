@@ -6,7 +6,20 @@
     <description>Recent content on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sat, 28 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>サバイバルTypeScript勉強備忘録3（Reactでいいねボタンを作る）</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-05-30_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B23/</link>
+      <pubDate>Mon, 30 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-05-30_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B23/</guid>
+      <description>目次  目次 1. 概要 2. 題材：Reactでいいねボタンを作る 3. 環境構築  3.1. Yarnのインストール 3.2. その他インストールが必要なもの 3.3. プロジェクト作成 3.4. 開発サーバ起動確認   4. コーディング  4.1. 作ったコード全体  4.1.1. App.tsx   4.2. App.tsxを変更する 4.3. LikeButton関数/タグを用意する 4.4. React useState関数を使ってボタンのカウントを制御する 4.5. onClick属性からcount stateの更新を行う 4.6. cssの設定 4.7. 動作確認   5. おわりに 6. 参考  　1. 概要 このシリーズでは、TypeScriptの入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載しています。
+今回の記事では、第三章 作って学ぶTypeScriptを題材に、TypeScriptでのApp実装を行います。
+　2. 題材：Reactでいいねボタンを作る 第三章 作って学ぶTypeScriptのReactでいいねボタンを作ろうに従い、Appを作っていきます。
+　3. 環境構築 3.1. Yarnのインストール パッケージ管理ツールYarnを導入します。グローバル環境にインストールしておきます。
+npm install -g yarn 3.</description>
+    </item>
+    
     <item>
       <title>サバイバルTypeScript勉強備忘録2（環境構築とコンパイル）</title>
       <link>https://mtside01.github.io/kennyblog/posts/2022-05-28_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B22/</link>

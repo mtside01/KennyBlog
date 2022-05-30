@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ja-jp">
+  <head>
+    <title>サバイバルTypeScript勉強備忘録3（Reactでいいねボタンを作る） // けにぶろぐ</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.95.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="けにー" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://mtside01.github.io/kennyblog/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="サバイバルTypeScript勉強備忘録3（Reactでいいねボタンを作る）"/>
+<meta name="twitter:description" content="目次  目次 1. 概要 2. 題材：Reactでいいねボタンを作る 3. 環境構築  3.1. Yarnのインストール 3.2. その他インストールが必要なもの 3.3. プロジェクト作成 3.4. 開発サーバ起動確認   4. コーディング  4.1. 作ったコード全体  4.1.1. App.tsx   4.2. App.tsxを変更する 4.3. LikeButton関数/タグを用意する 4.4. React useState関数を使ってボタンのカウントを制御する 4.5. onClick属性からcount stateの更新を行う 4.6. cssの設定 4.7. 動作確認   5. おわりに 6. 参考  　1. 概要 このシリーズでは、TypeScriptの入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載しています。
+今回の記事では、第三章 作って学ぶTypeScriptを題材に、TypeScriptでのApp実装を行います。
+　2. 題材：Reactでいいねボタンを作る 第三章 作って学ぶTypeScriptのReactでいいねボタンを作ろうに従い、Appを作っていきます。
+　3. 環境構築 3.1. Yarnのインストール パッケージ管理ツールYarnを導入します。グローバル環境にインストールしておきます。
+npm install -g yarn 3."/>
+
+    <meta property="og:title" content="サバイバルTypeScript勉強備忘録3（Reactでいいねボタンを作る）" />
+<meta property="og:description" content="目次  目次 1. 概要 2. 題材：Reactでいいねボタンを作る 3. 環境構築  3.1. Yarnのインストール 3.2. その他インストールが必要なもの 3.3. プロジェクト作成 3.4. 開発サーバ起動確認   4. コーディング  4.1. 作ったコード全体  4.1.1. App.tsx   4.2. App.tsxを変更する 4.3. LikeButton関数/タグを用意する 4.4. React useState関数を使ってボタンのカウントを制御する 4.5. onClick属性からcount stateの更新を行う 4.6. cssの設定 4.7. 動作確認   5. おわりに 6. 参考  　1. 概要 このシリーズでは、TypeScriptの入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載しています。
+今回の記事では、第三章 作って学ぶTypeScriptを題材に、TypeScriptでのApp実装を行います。
+　2. 題材：Reactでいいねボタンを作る 第三章 作って学ぶTypeScriptのReactでいいねボタンを作ろうに従い、Appを作っていきます。
+　3. 環境構築 3.1. Yarnのインストール パッケージ管理ツールYarnを導入します。グローバル環境にインストールしておきます。
+npm install -g yarn 3." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mtside01.github.io/kennyblog/posts/2022-05-30_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B23/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-30T00:00:00+00:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://mtside01.github.io/kennyblog/"><img class="app-header-avatar" src="/kennyblog/images/neko.png" alt="けにー" /></a>
+      <h1>けにぶろぐ</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/kennyblog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/about/">About</a>
+      </nav>
+      <p>備忘録や勉強のアウトプットの場</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">サバイバルTypeScript勉強備忘録3（Reactでいいねボタンを作る）</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 30, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/javascript/">JavaScript</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/typescript/">TypeScript</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="目次">目次</h1>
+<ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#1-%E6%A6%82%E8%A6%81">1. 概要</a></li>
+<li><a href="#2-%E9%A1%8C%E6%9D%90react%E3%81%A7%E3%81%84%E3%81%84%E3%81%AD%E3%83%9C%E3%82%BF%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B">2. 題材：Reactでいいねボタンを作る</a></li>
+<li><a href="#3-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89">3. 環境構築</a>
+<ul>
+<li><a href="#31-yarn%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">3.1. Yarnのインストール</a></li>
+<li><a href="#32-%E3%81%9D%E3%81%AE%E4%BB%96%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%AA%E3%82%82%E3%81%AE">3.2. その他インストールが必要なもの</a></li>
+<li><a href="#33-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E4%BD%9C%E6%88%90">3.3. プロジェクト作成</a></li>
+<li><a href="#34-%E9%96%8B%E7%99%BA%E3%82%B5%E3%83%BC%E3%83%90%E8%B5%B7%E5%8B%95%E7%A2%BA%E8%AA%8D">3.4. 開発サーバ起動確認</a></li>
+</ul>
+</li>
+<li><a href="#4-%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0">4. コーディング</a>
+<ul>
+<li><a href="#41-%E4%BD%9C%E3%81%A3%E3%81%9F%E3%82%B3%E3%83%BC%E3%83%89%E5%85%A8%E4%BD%93">4.1. 作ったコード全体</a>
+<ul>
+<li><a href="#411-apptsx">4.1.1. App.tsx</a></li>
+</ul>
+</li>
+<li><a href="#42-apptsx%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B">4.2. App.tsxを変更する</a></li>
+<li><a href="#43-likebutton%E9%96%A2%E6%95%B0%E3%82%BF%E3%82%B0%E3%82%92%E7%94%A8%E6%84%8F%E3%81%99%E3%82%8B">4.3. LikeButton関数/タグを用意する</a></li>
+<li><a href="#44-react-usestate%E9%96%A2%E6%95%B0%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%83%9C%E3%82%BF%E3%83%B3%E3%81%AE%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%92%E5%88%B6%E5%BE%A1%E3%81%99%E3%82%8B">4.4. React useState関数を使ってボタンのカウントを制御する</a></li>
+<li><a href="#45-onclick%E5%B1%9E%E6%80%A7%E3%81%8B%E3%82%89count-state%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92%E8%A1%8C%E3%81%86">4.5. onClick属性からcount stateの更新を行う</a></li>
+<li><a href="#46-css%E3%81%AE%E8%A8%AD%E5%AE%9A">4.6. cssの設定</a></li>
+<li><a href="#47-%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D">4.7. 動作確認</a></li>
+</ul>
+</li>
+<li><a href="#5-%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB">5. おわりに</a></li>
+<li><a href="#6-%E5%8F%82%E8%80%83">6. 参考</a></li>
+</ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="1-概要">1. 概要</h1>
+<p>このシリーズでは、TypeScriptの入門教材として<a href="https://typescriptbook.jp/">サバイバルTypeScript</a>で学習し、個人的に重要だと思った箇所を備忘録として記事に記載しています。</p>
+<p>今回の記事では、<a href="https://typescriptbook.jp/tutorials">第三章 作って学ぶTypeScript</a>を題材に、TypeScriptでのApp実装を行います。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="2-題材reactでいいねボタンを作る">2. 題材：Reactでいいねボタンを作る</h1>
+<p><a href="https://typescriptbook.jp/tutorials">第三章 作って学ぶTypeScript</a>の<a href="https://typescriptbook.jp/tutorials/react-like-button-tutorial">Reactでいいねボタンを作ろう</a>に従い、Appを作っていきます。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="3-環境構築">3. 環境構築</h1>
+<h2 id="31-yarnのインストール">3.1. Yarnのインストール</h2>
+<p>パッケージ管理ツールYarnを導入します。グローバル環境にインストールしておきます。</p>
+<pre tabindex="0"><code>npm install -g yarn
+</code></pre><p><img src="https://mtside01.github.io/kennyblog/images/2022-05-30/installYarn.png" alt="install yarn"></p>
+<h2 id="32-その他インストールが必要なもの">3.2. その他インストールが必要なもの</h2>
+<p>以下をインストールしていない場合は別途追加しておいて下さい。
+おそらくこれまで記事での環境構築時にインストール済みです。</p>
+<ul>
+<li>Node.js</li>
+<li>NPM</li>
+<li>エディタ（VS Codeなど）</li>
+</ul>
+<h2 id="33-プロジェクト作成">3.3. プロジェクト作成</h2>
+<p>以下コマンドでReactプロジェクトを作成します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>npx create-react-app like-button --template typescript
+</span></span></code></pre></div><p>※ create-react-appパッケージが足りていない場合は以下のようにインストールを促されます。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-30/installCreateReact.png" alt="install create-react-app"></p>
+<p>パッケージのインストールおよびReactプロジェクトの作成が終わると、指定ディレクトリに以下のようなファイルが出来上がっているはずです。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-30/createdFiles.png" alt="created files"></p>
+<h2 id="34-開発サーバ起動確認">3.4. 開発サーバ起動確認</h2>
+<p>作成したディレクトリに移動し、以下のコマンドを実行することで開発サーバが立ち上がります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>yarn start
+</span></span></code></pre></div><p>無事に立ち上がると以下のようなCompiled Successfully!画面が表示されます。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-30/compiledSuccessfully.png" alt="Compiled Successfully!"></p>
+<p>また、指定されたlocalhostポートにアクセスするとReactのひながたAppが表示されます。</p>
+<p><img src="https://mtside01.github.io/kennyblog/images/2022-05-30/reactTemplate.png" alt="React Template"></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="4-コーディング">4. コーディング</h1>
+<h2 id="41-作ったコード全体">4.1. 作ったコード全体</h2>
+<p>一旦全体を以下に記載します。それぞれのブロックにおける重要箇所は後ほど説明します。</p>
+<h3 id="411-apptsx">4.1.1. App.tsx</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-TypeScript" data-lang="TypeScript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useState</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">logo</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./logo.svg&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;./App.css&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">App() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;App&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">header</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;App-header&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">LikeButton</span> /&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">header</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">LikeButton() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">count</span>, <span style="color:#a6e22e">setCount</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#ae81ff">999</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">handleClick</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setCount</span>(<span style="color:#a6e22e">count</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>(
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;likeButton&#39;</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">handleClick</span>}&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">♥</span> {<span style="color:#a6e22e">count</span>}
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">App</span>;
+</span></span></code></pre></div><h2 id="42-apptsxを変更する">4.2. App.tsxを変更する</h2>
+<p>初期設定では、src/App.tsxの内容が描画されるようになっています。</p>
+<p>たとえば、予め用意されているdiv要素内を以下のように変えると、画面表示内容も瞬時に切り替わります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-TypeScript" data-lang="TypeScript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">logo</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./logo.svg&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;./App.css&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">App() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;App&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">header</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;App-header&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">h1</span>&gt;<span style="color:#960050;background-color:#1e0010">けにぶろぐ</span>&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">header</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">App</span>;
+</span></span></code></pre></div><p><img src="https://mtside01.github.io/kennyblog/images/2022-05-30/appTsx.png" alt="App.tsxの変更"></p>
+<p>※ ここでの拡張子「.tsx」とは、TypeScript内に直接XMLを書けるように拡張したものです。同様にJavaScriptでは「.jsx」となります。</p>
+<h2 id="43-likebutton関数タグを用意する">4.3. LikeButton関数/タグを用意する</h2>
+<p>React JSXでは自身で定義した関数をタグとして使うことが出来ます。
+今回はLikeButtonという関数およびタグを追加しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-TypeScript" data-lang="TypeScript"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;App&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">header</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;App-header&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">LikeButton</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">header</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">…</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">LikeButton() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">…</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="44-react-usestate関数を使ってボタンのカウントを制御する">4.4. React useState関数を使ってボタンのカウントを制御する</h2>
+<p>ボタンカウントの制御のためにReactのuseState関数というものを使っています。</p>
+<p>以下のようにインポートします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-TypeScript" data-lang="TypeScript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useState</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
+</span></span></code></pre></div><p>使用する際には、以下のように記載します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-TypeScript" data-lang="TypeScript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">count</span>, <span style="color:#a6e22e">setCount</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#ae81ff">999</span>);
+</span></span></code></pre></div><p>それぞれ以下を意味しています。</p>
+<ul>
+<li>count : state値</li>
+<li>setCount : stateを更新するための関数名</li>
+<li>useState(999) : reactのuseState関数の呼び出し、引数はstate（今回の場合count）の初期値が入る</li>
+</ul>
+<h2 id="45-onclick属性からcount-stateの更新を行う">4.5. onClick属性からcount stateの更新を行う</h2>
+<p>span要素にonClick属性を追加し、handleClickという関数を呼び出しています。
+またその中で、先程定義したsetCount関数を呼び出し、count値の更新を行っています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-TypeScript" data-lang="TypeScript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">LikeButton() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">count</span>, <span style="color:#a6e22e">setCount</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#ae81ff">999</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">handleClick</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setCount</span>(<span style="color:#a6e22e">count</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>(
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;likeButton&#39;</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">handleClick</span>}&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">♥</span> {<span style="color:#a6e22e">count</span>}
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="46-cssの設定">4.6. cssの設定</h2>
+<p><a href="https://typescriptbook.jp/tutorials/react-like-button-tutorial">Reactでいいねボタンを作ろう</a>に従い、span要素にlikeButtonというCSSクラスを適用しています。
+ReactではCSSクラスの指定にはclassではなくclassName属性を使うようです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-TypeScript" data-lang="TypeScript"><span style="display:flex;"><span>&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;likeButton&#39;</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">handleClick</span>}&gt;
+</span></span></code></pre></div><p>cssクラス記載はApp.css内に追記しています。</p>
+<p>App.tsx内には、プロジェクト生成時点からApp.cssのインポート記載がされているため問題なく反映されるはずです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">likeButton</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-color</span>: rgb(<span style="color:#ae81ff">231</span>, <span style="color:#ae81ff">76</span>, <span style="color:#ae81ff">60</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">white</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0.8</span><span style="color:#66d9ef">rem</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">0.4</span><span style="color:#66d9ef">rem</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">cursor</span>: <span style="color:#66d9ef">pointer</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="47-動作確認">4.7. 動作確認</h2>
+<p>以下のように、クリックする度に値が増えるいいねボタンを作ることが出来ました。</p>
+<p><img src="https://media.giphy.com/media/ulOo3olcQYA5HjRQJn/giphy.gif" alt="いいねボタンApp"></p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="5-おわりに">5. おわりに</h1>
+<p>今回の記事では、<a href="https://typescriptbook.jp/">サバイバルTypeScript</a>の<a href="https://typescriptbook.jp/tutorials">第三章 作って学ぶTypeScript</a>を題材に、Reactを使ったいいねボタンの実装を行いました。</p>
+<p>次回は引き続き、コーディング規約の確認などを学んでいこうと思います。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="6-参考">6. 参考</h1>
+<ul>
+<li><a href="https://typescriptbook.jp/">https://typescriptbook.jp/</a></li>
+<li><a href="https://tyotto-good.com/blog/usestate-basic">https://tyotto-good.com/blog/usestate-basic</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
