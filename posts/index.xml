@@ -6,7 +6,20 @@
     <description>Recent content in Posts on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 30 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>サバイバルTypeScript勉強備忘録4（ESLintでのJavaScriptコーディング規約チェック）</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-06-11_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B24/</link>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-06-11_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B24/</guid>
+      <description>目次  目次 1. 概要 2. 背景知識  2.1. コーディング規約で書き方を統一する 2.2. コーディング規約の問題点 2.3. コーディング規約の自動化（ESLint） 2.4. リンターについて  2.4.1. コンパイラとリンターの違い 2.4.2. TypeScriptコンパイラとESLintの違い     3. ESLintでJavaScriptをリントする  3.1. プロジェクト作成 3.2. ESLintの導入 3.3. ESLintの設定ファイル作成 3.4. ESLintのルールを設定する 3.5. チェックする 3.6. Shareable Configの導入 3.7. ルールを部分的に無効化したい場合   4. おわりに 5. 参考  　1. 概要 このシリーズでは、TypeScriptの入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載しています。
+今回の記事では、第三章 作って学ぶTypeScriptを題材に、JavaScript/TypeScriptのコーディング規約チェックについて学んでいきます。
+　2. 背景知識 2.1. コーディング規約で書き方を統一する プログラムを共同で開発する場合、人によって書き方が異なると可読性や保守性の低下を引き起こす可能性があります。 そういった不都合を解消するための書き方のルールを「コーディング規約(coding standards)」と呼びます。
+コーディング規約を一から作るのは大変なので、多くの場合、公開されているものを利用します。JavaScriptにおける代表的なものには以下があります。
+ Google JavaScript Style Guide JavaScript Standard Style Airbnb JavaScript Style Guide  2.</description>
+    </item>
+    
     <item>
       <title>サバイバルTypeScript勉強備忘録3（Reactでいいねボタンを作る）</title>
       <link>https://mtside01.github.io/kennyblog/posts/2022-05-30_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B23/</link>
