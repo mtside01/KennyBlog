@@ -6,7 +6,19 @@
     <description>Recent content in Posts on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sat, 11 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>サバイバルTypeScript勉強備忘録5（ESLintでのTypeScriptコーディング規約チェック）</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-06-16_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B25/</link>
+      <pubDate>Thu, 16 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-06-16_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B25/</guid>
+      <description>目次  目次 1. 概要 2. 環境構築  2.1. プロジェクト作成 2.2. TypeScriptの導入 2.3. TypeScriptファイルの作成   3. TypeScriptにESLintを導入する  3.1. 導入コマンド実行 3.2. TypeScript向けshareable configを導入する 3.3. TypeScript ESLint設定ファイルの作成  3.3.1. tsconfig.eslint.jsonの作成 3.3.2. .eslintrc.jsの作成     4. TypeScriptをチェックする  4.1. コード記載 4.2. ESLint実行 4.3. 指摘内容の修正   5. VS Code用ESLint Extensionの導入 6. おわりに 7. 参考  　1. 概要 このシリーズでは、TypeScriptの入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載しています。
+今回の記事では、第三章 作って学ぶTypeScriptを題材に、TypeScriptのコーディング規約チェックについて学んでいきます。
+　2. 環境構築 2.1. プロジェクト作成 適当なディレクトリを作成し、package.jsonを作成、最低限の内容を記載しておきます。
+{  &amp;#34;name&amp;#34;: &amp;#34;eslint-typescript-tutorial&amp;#34;,  &amp;#34;license&amp;#34;: &amp;#34;UNLICENSED&amp;#34;, } 2.</description>
+    </item>
+    
     <item>
       <title>サバイバルTypeScript勉強備忘録4（ESLintでのJavaScriptコーディング規約チェック）</title>
       <link>https://mtside01.github.io/kennyblog/posts/2022-06-11_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B24/</link>
