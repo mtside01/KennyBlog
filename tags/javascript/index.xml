@@ -6,7 +6,16 @@
     <description>Recent content in JavaScript on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 16 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>サバイバルTypeScript勉強備忘録6（TypeScriptの変数、オブジェクト、配列、型定義）</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-07-11_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B26/</link>
+      <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-07-11_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B26/</guid>
+      <description>目次  目次 1. 概要 2. 変数  2.1. 変数宣言の型注釈 2.2. 変数を読み取り専用にする（readonlyプロパティ）  2.2.1. 基本的な書き方 2.2.2. readonlyは再帰的ではない 2.2.3. 一括して読み取り専用にしたい場合     3. オブジェクト  3.1. オブジェクトリテラル 3.2. メソッドの型注釈 3.3. オブジェクトの分割代入 3.4. オプショナルチェーン   4. 配列  4.1. 配列の型注釈 4.2. 読み取り専用の配列 4.3. 配列の分割代入 4.4. 配列のスプレッド構文   5. 型定義  5.1. 列挙型(enum) 5.2. ユニオン型 5.3. インターセクション型 5.4. 型エイリアス 5.5. typeof演算子   6. おわりに 7. 参考  　1.</description>
+    </item>
+    
     <item>
       <title>サバイバルTypeScript勉強備忘録5（ESLintでのTypeScriptコーディング規約チェック）</title>
       <link>https://mtside01.github.io/kennyblog/posts/2022-06-16_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B25/</link>
