@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ja-jp">
+  <head>
+    <title>サバイバルTypeScript勉強備忘録7（TypeScriptの文、関数、クラス） // けにぶろぐ</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.95.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="けにー" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://mtside01.github.io/kennyblog/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="サバイバルTypeScript勉強備忘録7（TypeScriptの文、関数、クラス）"/>
+<meta name="twitter:description" content="目次  目次 1. 概要 2. 文  2.1. 例外処理(exception)  2.1.1. throw構文 2.1.2. try-catch構文     3. 関数  3.1. アロー関数 3.2. 関数はオブジェクト 3.3. 関数の引数 3.4. 値渡し 3.5. デフォルト引数(default parameter)   4. クラス  4.1. コンストラクタ 4.2. フィールド 4.3. メソッド 4.4. フィールドの初期化子 4.5. アクセス修飾子 4.6. readonly修飾子 4.7. クラスの継承   5. おわりに 6. 参考  　1. 概要 このシリーズでは、TypeScriptの入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載しています。
+今回の記事では、第四章 読んで学ぶTypeScriptを題材に、TypeScriptの文、関数を学んでいきます。
+　2. 文 2.1. 例外処理(exception) 2."/>
+
+    <meta property="og:title" content="サバイバルTypeScript勉強備忘録7（TypeScriptの文、関数、クラス）" />
+<meta property="og:description" content="目次  目次 1. 概要 2. 文  2.1. 例外処理(exception)  2.1.1. throw構文 2.1.2. try-catch構文     3. 関数  3.1. アロー関数 3.2. 関数はオブジェクト 3.3. 関数の引数 3.4. 値渡し 3.5. デフォルト引数(default parameter)   4. クラス  4.1. コンストラクタ 4.2. フィールド 4.3. メソッド 4.4. フィールドの初期化子 4.5. アクセス修飾子 4.6. readonly修飾子 4.7. クラスの継承   5. おわりに 6. 参考  　1. 概要 このシリーズでは、TypeScriptの入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載しています。
+今回の記事では、第四章 読んで学ぶTypeScriptを題材に、TypeScriptの文、関数を学んでいきます。
+　2. 文 2.1. 例外処理(exception) 2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mtside01.github.io/kennyblog/posts/2022-07-18_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B27/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-18T00:00:00+00:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://mtside01.github.io/kennyblog/"><img class="app-header-avatar" src="/kennyblog/images/neko.png" alt="けにー" /></a>
+      <h1>けにぶろぐ</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/kennyblog/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/kennyblog/about/">About</a>
+      </nav>
+      <p>備忘録や勉強のアウトプットの場</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/mtside01" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">サバイバルTypeScript勉強備忘録7（TypeScriptの文、関数、クラス）</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jul 18, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/javascript/">JavaScript</a>
+              <a class="tag" href="https://mtside01.github.io/kennyblog/tags/typescript/">TypeScript</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="目次">目次</h1>
+<ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#1-%E6%A6%82%E8%A6%81">1. 概要</a></li>
+<li><a href="#2-%E6%96%87">2. 文</a>
+<ul>
+<li><a href="#21-%E4%BE%8B%E5%A4%96%E5%87%A6%E7%90%86exception">2.1. 例外処理(exception)</a>
+<ul>
+<li><a href="#211-throw%E6%A7%8B%E6%96%87">2.1.1. throw構文</a></li>
+<li><a href="#212-try-catch%E6%A7%8B%E6%96%87">2.1.2. try-catch構文</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-%E9%96%A2%E6%95%B0">3. 関数</a>
+<ul>
+<li><a href="#31-%E3%82%A2%E3%83%AD%E3%83%BC%E9%96%A2%E6%95%B0">3.1. アロー関数</a></li>
+<li><a href="#32-%E9%96%A2%E6%95%B0%E3%81%AF%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">3.2. 関数はオブジェクト</a></li>
+<li><a href="#33-%E9%96%A2%E6%95%B0%E3%81%AE%E5%BC%95%E6%95%B0">3.3. 関数の引数</a></li>
+<li><a href="#34-%E5%80%A4%E6%B8%A1%E3%81%97">3.4. 値渡し</a></li>
+<li><a href="#35-%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E5%BC%95%E6%95%B0default-parameter">3.5. デフォルト引数(default parameter)</a></li>
+</ul>
+</li>
+<li><a href="#4-%E3%82%AF%E3%83%A9%E3%82%B9">4. クラス</a>
+<ul>
+<li><a href="#41-%E3%82%B3%E3%83%B3%E3%82%B9%E3%83%88%E3%83%A9%E3%82%AF%E3%82%BF">4.1. コンストラクタ</a></li>
+<li><a href="#42-%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89">4.2. フィールド</a></li>
+<li><a href="#43-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">4.3. メソッド</a></li>
+<li><a href="#44-%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89%E3%81%AE%E5%88%9D%E6%9C%9F%E5%8C%96%E5%AD%90">4.4. フィールドの初期化子</a></li>
+<li><a href="#45-%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E4%BF%AE%E9%A3%BE%E5%AD%90">4.5. アクセス修飾子</a></li>
+<li><a href="#46-readonly%E4%BF%AE%E9%A3%BE%E5%AD%90">4.6. readonly修飾子</a></li>
+<li><a href="#47-%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AE%E7%B6%99%E6%89%BF">4.7. クラスの継承</a></li>
+</ul>
+</li>
+<li><a href="#5-%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB">5. おわりに</a></li>
+<li><a href="#6-%E5%8F%82%E8%80%83">6. 参考</a></li>
+</ul>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="1-概要">1. 概要</h1>
+<p>このシリーズでは、TypeScriptの入門教材として<a href="https://typescriptbook.jp/">サバイバルTypeScript</a>で学習し、個人的に重要だと思った箇所を備忘録として記事に記載しています。</p>
+<p>今回の記事では、<a href="https://typescriptbook.jp/reference">第四章 読んで学ぶTypeScript</a>を題材に、TypeScriptの文、関数を学んでいきます。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="2-文">2. 文</h1>
+<h2 id="21-例外処理exception">2.1. 例外処理(exception)</h2>
+<h3 id="211-throw構文">2.1.1. throw構文</h3>
+<p>throw構文を使うことで任意のタイミングで例外をスローすることが出来ます。一般的にはErrorオブジェクトを投げます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;network error!&#34;</span>);
+</span></span></code></pre></div><h3 id="212-try-catch構文">2.1.2. try-catch構文</h3>
+<p>try-catch構文を使うことで、例外を捉えることが出来ます。例外が投げられる可能性がある部分をtryで囲み、catchブロックで捉えた例外に対する処理を行います。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;something wrong&#34;</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">e</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>　
+<!-- raw HTML omitted --></p>
+<h1 id="3-関数">3. 関数</h1>
+<h2 id="31-アロー関数">3.1. アロー関数</h2>
+<p>アロー関数を使うと、文を短く書くことが出来ます。
+例えば、以下のような関数式があった場合、</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">increment</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">n</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>アロー関数を用いて書くと、以下のようになります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">increment</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">n</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>また、引数が1つの場合や、関数内のコードが式1つのみの場合は更に省略する事ができます。
+※ ただし、引数なしの場合には()を省略することは出来ません。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">increment</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>アロー関数に型注釈をつける場合は以下のようになります。
+注意点として、戻り値の型注釈はアロー記号の左辺に付きます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">increment</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">num</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">number</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">num</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><h2 id="32-関数はオブジェクト">3.2. 関数はオブジェクト</h2>
+<p>JavaScriptの関数はオブジェクトであるため、プロパティを持たせることが出来ます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">hello() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello World&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">hello</span>.<span style="color:#a6e22e">prop</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">123</span>;
+</span></span></code></pre></div><h2 id="33-関数の引数">3.3. 関数の引数</h2>
+<p>JavaScriptでは引数の数をチェックしていません。
+例えば、引数を2つ渡すことが期待されている関数に対して、引数1つで呼び出してもエラーにはなりません。その際、渡されなかった引数の値はundefinedになります。</p>
+<h2 id="34-値渡し">3.4. 値渡し</h2>
+<p>JavaScriptでは参照渡しの機能はありません。
+関数の引数はすべて値渡しになります。</p>
+<h2 id="35-デフォルト引数default-parameter">3.5. デフォルト引数(default parameter)</h2>
+<p>引数の値がundefinedのときに、代わりとなるデフォルト引数を設定することが出来ます。引数の右に=とデフォルト値を記載します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span>(<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">x</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">foo</span>();
+</span></span></code></pre></div><p>また、デフォルト値には式や関数呼び出しを書くことも出来ます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span>(<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#e6db74">&#34;1.5&#34;</span>)) {}
+</span></span></code></pre></div><p>　
+<!-- raw HTML omitted --></p>
+<h1 id="4-クラス">4. クラス</h1>
+<h2 id="41-コンストラクタ">4.1. コンストラクタ</h2>
+<p>クラスがインスタンス化される際に実行される関数です。constructor構文を使って以下のように記載します。
+型注釈を行う場合には、関数と同様の書き方が出来ます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>コンストラクタに引数を渡したい場合は、new演算子の実行時に指定をします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span>(<span style="color:#e6db74">&#34;Alice&#34;</span>);
+</span></span></code></pre></div><h2 id="42-フィールド">4.2. フィールド</h2>
+<p>TypeScriptでは、クラス宣言に書かれていないフィールドへアクセスした場合、コンパイルエラーとなります。
+そのため、以下のように予めフィールド定義を記載する必要があります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">alice</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">alice</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Alice&#34;</span>;
+</span></span></code></pre></div><h2 id="43-メソッド">4.3. メソッド</h2>
+<p>クラス内メソッドの引数と戻り値に型注釈を行う場合、以下のような書き方になります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Greeter</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">greet</span>(<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`Hello, </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!`</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="44-フィールドの初期化子">4.4. フィールドの初期化子</h2>
+<p>TypeScriptでは、クラス内のフィールド名の右に=値と記載することで、初期値を指定することが出来ます。
+この値は、クラスがインスタンス化されるときに自動実行されます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">x</span>: <span style="color:#66d9ef">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">y</span>: <span style="color:#66d9ef">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">point</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Point</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span>);
+</span></span></code></pre></div><h2 id="45-アクセス修飾子">4.5. アクセス修飾子</h2>
+<p>TypeScriptでは、フィールドやメソッドにアクセス修飾子を付けることで、アクセス可能な範囲を限定することが出来ます。</p>
+<table>
+<thead>
+<tr>
+<th>アクセス修飾子</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(宣言無し)</td>
+<td>publicと同等</td>
+</tr>
+<tr>
+<td>public</td>
+<td>どこからでもアクセス可能</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>自身のクラスとサブクラスからアクセス可能</td>
+</tr>
+<tr>
+<td>private</td>
+<td>自身のクラスのみアクセス可能</td>
+</tr>
+</tbody>
+</table>
+<p>以下のように、宣言時にアクセス修飾子を記載します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>; 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">theName</span>: <span style="color:#66d9ef">string</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">theName</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="46-readonly修飾子">4.6. readonly修飾子</h2>
+<p>TypeScriptでは、フィールドにreadonly修飾子を付けることで、読み取り専用にすることが出来ます。
+読み取り専用フィールドは、コンストラクタもしくは初期化子でのみ値を代入することが出来ます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Octopus</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">readonly</span> <span style="color:#a6e22e">legs</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;たこちゃん&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="47-クラスの継承">4.7. クラスの継承</h2>
+<p>extendsキーワードを使うことでクラスを継承することが出来ます。
+サブクラスにコンストラクタを記載する場合、スーパークラスのコンストラクタは必ず呼び出す必要があります。<code>super()</code>で呼び出すことが出来ます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Parent</span> {}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Child</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Parent</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>　
+<!-- raw HTML omitted --></p>
+<h1 id="5-おわりに">5. おわりに</h1>
+<p>今回の記事では、<a href="https://typescriptbook.jp/reference">第四章 読んで学ぶTypeScript</a>を題材に、TypeScriptの文、関数を中心に学びました。</p>
+<p>これまで7回に分けて学んできた<a href="https://typescriptbook.jp/">サバイバルTypeScript</a>シリーズですが、一通り目を通すことは出来たので、この記事までで一旦終了とし、次回からは別の題材で学んでいこうと思います。</p>
+<p>長いことお付き合いいただきありがとうございました。</p>
+<p>　
+<!-- raw HTML omitted --></p>
+<h1 id="6-参考">6. 参考</h1>
+<ul>
+<li><a href="https://typescriptbook.jp/">https://typescriptbook.jp/</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

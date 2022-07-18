@@ -6,7 +6,18 @@
     <description>Recent content in TypeScript on けにぶろぐ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mtside01.github.io/kennyblog/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>サバイバルTypeScript勉強備忘録7（TypeScriptの文、関数、クラス）</title>
+      <link>https://mtside01.github.io/kennyblog/posts/2022-07-18_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B27/</link>
+      <pubDate>Mon, 18 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://mtside01.github.io/kennyblog/posts/2022-07-18_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B27/</guid>
+      <description>目次  目次 1. 概要 2. 文  2.1. 例外処理(exception)  2.1.1. throw構文 2.1.2. try-catch構文     3. 関数  3.1. アロー関数 3.2. 関数はオブジェクト 3.3. 関数の引数 3.4. 値渡し 3.5. デフォルト引数(default parameter)   4. クラス  4.1. コンストラクタ 4.2. フィールド 4.3. メソッド 4.4. フィールドの初期化子 4.5. アクセス修飾子 4.6. readonly修飾子 4.7. クラスの継承   5. おわりに 6. 参考  　1. 概要 このシリーズでは、TypeScriptの入門教材としてサバイバルTypeScriptで学習し、個人的に重要だと思った箇所を備忘録として記事に記載しています。
+今回の記事では、第四章 読んで学ぶTypeScriptを題材に、TypeScriptの文、関数を学んでいきます。
+　2. 文 2.1. 例外処理(exception) 2.</description>
+    </item>
+    
     <item>
       <title>サバイバルTypeScript勉強備忘録6（TypeScriptの変数、オブジェクト、配列、型定義）</title>
       <link>https://mtside01.github.io/kennyblog/posts/2022-07-11_%E3%82%B5%E3%83%90%E3%82%A4%E3%83%90%E3%83%ABtypescript%E5%8B%89%E5%BC%B7%E5%82%99%E5%BF%98%E9%8C%B26/</link>
